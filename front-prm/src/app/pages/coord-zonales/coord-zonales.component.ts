@@ -53,7 +53,7 @@ export class CoordZonalesComponent implements OnInit {
 
   allZonas: any[]=[]
 
-  coordMuni: any=[]
+  coordZonal: any=[]
 
 
 
@@ -236,7 +236,7 @@ constructor(
 
   selecctData(id: number){
     this.service.readCoordZona(id).subscribe((res:any)=>{
-      this.coordMuni = res
+      this.coordZonal = res
       this.foto = res.foto
 
       this.formEdit.patchValue({
