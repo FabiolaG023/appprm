@@ -21,11 +21,9 @@ export class UserDto {
     password: string;
 
     @IsNotEmpty()
-    @IsNumber()
     idmunicipio: number;
 
     @IsNotEmpty()
-    @IsNumber()
     idprovincia: number;
 
     @IsNotEmpty()
