@@ -37,7 +37,15 @@ export class CoordZonaService {
     
     
         async read(id: string){
-        const coordZonaFound = await this.respo.findOne({where:{id}})
+        const coordZonaFound = await this.respo.findOne({where:{id}, relations: {
+            idmunicipio: true, 
+            idcircunscripcion: true, 
+            idcolegio: true,
+            idcoordmunicipal: true,
+            idprovincia: true,
+            idrecinto: true,
+            idzona: true
+        }})
     
             try {
                 if(!coordZonaFound){

@@ -18,9 +18,9 @@ export class CoordMunicipalController {
 
   
 
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
-  @UseGuards(RoleGuard(Role.Admin || Role.User)) 
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
+@UseGuards(RoleGuard(Role.Admin || Role.User)) 
 @Get('all')
 async getUsers(){
   return await this.service.all()

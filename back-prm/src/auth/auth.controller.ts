@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Post,Request, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, NotFoundException, Post,Request, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth } from '@nestjs/swagger';
@@ -20,10 +20,17 @@ export class AuthController {
     const {usuario, password} = loginDto;
     const valid = await this.service.validateUser(loginDto);
     if (!valid) {
-      throw new NotFoundException();  
+     // throw new NotFoundException();  
+     throw new HttpException({
+      status: HttpStatus.FORBIDDEN,
+      error: 'Credenciales Invalidas',
+      origin: '/login'
+     }, HttpStatus.FORBIDDEN);
+
     }
     return await this.service.generateAccessToken(usuario);
   }
+
 
 
 @Post('/singup')

@@ -50,7 +50,7 @@
                   <a class="btn btn-icon text-primary flex-end" data-bs-toggle="tooltip" title="Editar" (click)="selecctData(data.id)" data-bs-toggle="modal" data-bs-target="#EditModal"><i class="fa-regular fa-pen-to-square"></i></a>
                   <a class="btn btn-icon text-primary flex-end" data-bs-toggle="tooltip" title="Detalles" (click)="selecctData(data.id)" data-bs-toggle="modal" data-bs-target="#ViewModal"><i class="fa-regular fa-eye"></i></a>
                   <a class="btn btn-icon text-danger flex-end" data-bs-toggle="tooltip" title="Eliminar" (click)="deleteData(data.id)"><i class="fa-regular fa-trash-can"></i></a>
-                </span>  
+                </span>
               </div>
             </td>
           </tr>
@@ -212,7 +212,11 @@
                         </div>
                         <h5 class="f-w-600">{{coordMuni.nombre}}</h5>
                         <h5 class="f-w-600">{{coordMuni.apellido}}</h5>
+
+
                         <p >{{coordMuni.cedula}}</p>
+
+
                         <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                     </div>
                 </div>
@@ -220,17 +224,19 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="col-sm-4">
-                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Apodo: <h6 class="text-muted f-w-400">{{coordMuni.apodo}}</h6></h5>
+                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Apodo: <h6 class="text-muted f-w-400">{{coordZonal.apodo}}</h6></h5>
                                 <h5 class="m-b-16 f-w-600"></h5>
                             </div>
-                            <div class="col-sm-4">
-                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Telefono: <h6 class="text-muted f-w-400">{{coordMuni.telefono}}</h6></h5>
-                                <h5 class="m-b-16 f-w-600"></h5>
-                            </div>
-                            <div class="col-sm-4">
-                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Municipio: <h6 class="text-muted f-w-400">{{coordMuni.idmunicipio.municipio}}</h6></h5>
-                                <h5 class="m-b-16 f-w-600"></h5>
-                            </div>
+
+                              <div class="col-sm-4">
+                                <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Telefono: <h6 class="text-muted f-w-400">{{coordMuni.telefono}}</h6></h5>
+                                  <h5 class="m-b-16 f-w-600"></h5>
+                              </div>
+
+                                <div class="col-sm-4">
+                                  <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Municipio: <h6 class="text-muted f-w-400">{{coordMuni.idmunicipio}}</h6></h5>
+                                    <h5 class="m-b-16 f-w-600"></h5>
+                                </div>
                         </div>
                         <div class="row">
                           <div class="col-sm-6">
