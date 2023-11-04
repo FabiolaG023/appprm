@@ -25,8 +25,22 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Nest version 10.1.18
 
 ## Installation
+
+    npm i  bcrypt  version 5.1.1
+    npm i  class-transformer version 0.5.1
+    npm i class-validator version 0.14.0
+    npm i date-fns version 2.30.0
+    npm i dotenv version 16.3.1
+    npm i fs version 0.0.1-security
+    npm i mysql2 version 3.6.2
+    npm i passport version 0.6.0
+    npm i passport-jwt version 4.0.1
+    npm i passport-local version 1.0.0
+    npm i reflect-metadata version 0.1.13
+    npm i rxjs version ^7.8.1
 
 ```bash
 $ npm install
