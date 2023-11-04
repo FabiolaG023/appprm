@@ -78,10 +78,7 @@ constructor(
     apodo: new FormControl(''),
     telefono: new FormControl(''),
    })
-
-
     // INPUTS EN MAYUSCULA
-
     this.formCreate.get('apodo')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
     .subscribe((newValue: any)=>{  this.formCreate.get('apodo')!.setValue(newValue, { emitEvent: false });});
 

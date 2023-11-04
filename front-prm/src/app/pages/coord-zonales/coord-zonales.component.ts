@@ -42,6 +42,7 @@ export class CoordZonalesComponent implements OnInit {
   idProvincia: any
   nombreMuni: any
   nombreProv: any
+  nameRecinto: any
 
   provincias: any;
   selectedProvince: any;
@@ -135,7 +136,9 @@ constructor(
             this.dataJCE = res[0],
              this.idMunicipio = this.dataJCE.IdMunicipio;
              this.idProvincia = this.dataJCE.IdProvincia;
-             this.isValid = this.dataJCE.existe
+             this.nameRecinto = this.dataJCE.CodigoRecinto;
+             this.isValid = this.dataJCE.existe;
+
 
              if (this.isValid) {
             //  this.addForm(this.dataJCE)
