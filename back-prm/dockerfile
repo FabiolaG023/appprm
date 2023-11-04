@@ -1,0 +1,4 @@
+FROM mysql:latest
+
+# Copiar los scripts SQL al directorio /docker-entrypoint-initdb.d/ en el contenedor
+COPY ./scripts/ /docker-entrypoint-initdb.d/

@@ -1,0 +1,122 @@
+
+
+
+<div class="col-md-12">
+  <div class="card" data-aos="fade-up" data-aos-delay="800">
+      <div class="flex-wrap card-header d-flex justify-content-between align-items-center">
+          <div class="header-title">
+              <h4 class="card-title">Configuracion de Zonas</h4>
+          </div>
+            <div class="flex-wrap card-header d-flex justify-content-between align-items-end">
+                  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newZonaModal">
+                    <span class="btn-inner">
+                      <i class="fa-solid fa-plus"></i>
+                    </span>
+                    Nuevo
+                  </button>
+            </div>
+        </div>
+        <div class="card-body">
+          <div class="row justify-content-around">
+            <div class="col-md-12">
+              <div class="card h-100">
+                <div class="card-body px-0">
+                  <div class="table-responsive">
+                      <table class="display" id="datatableZonas">
+                        <thead>
+                          <tr >
+                              <th>Zonas</th>
+                              <th>Municipio</th>
+                              <th>Opciones</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                          <tr *ngFor=" let data of zonas ">
+                            <td>{{data.zona}}</td>
+                            <td>{{data.idmunicipio.municipio}}</td>
+                            <td>
+                              <div class="btn-group me-2" role="group" aria-label="Second group">
+                                <a type="button"  class="btn-outline-primary  btn-icon btn-sm p-2" data-bs-toggle="modal" data-bs-target="#EditModal"    (click)="selectData(data.id)"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <a type="button" class="btn-outline-primary btn-sm p-2 btn-icon text-danger"  (click)="deleteData(data.id)" ><i class="fa-solid fa-trash-can"></i></a>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      </div>
+        </div>
+  </div>
+</div>
+
+ <!-- Modal FORMULARIO -->
+ <div class="modal fade" id="newZonaModal" tabindex="-1" aria-labelledby="newZonaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="newZonaModal">Crear nueva Zona</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+    <div class="modal-body">
+      <form class="row g-3" [formGroup]="zonaForm" (ngSubmit)="addZona()" >
+        <div class="col-md-4">
+                <label for="floatingInput">Zona</label>
+                <select class="form-control form-select " formControlName="zona"   name="zona" >
+                  <option  *ngFor="let data of zonasAbc" value ="{{data.letra}}">{{data.letra}} </option>
+              </select>
+              </div>
+              <div class="col-md-6">
+                <label for="floatingInput">Municipio</label>
+                  <select class="form-control form-select " formControlName="idmunicipio"  name="idmunicipio">
+                    <option  *ngFor="let data of municipios" value ="{{data.id}}">{{data.municipio}}</option>
+                </select>
+            </div>
+            <div class="col-md-4 align-self-end">
+              <button type="submit" class="btn btn-outline-primary mb-3"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+      </form>
+    </div>
+    </div>
+  </div>
+  </div>
+ <!-- Modal FORMULARIO Editar-->
+ <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Zona</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+
+        <form  class="row g-3" [formGroup]="updateForm" (ngSubmit)="updateData(idData)" >
+                  <div class="col-md-4">
+                    <label for="floatingInput">Zona</label>
+                      <select class="form-control form-select " formControlName="zona"   name="zona" >
+                        <option  *ngFor="let data of zonasAbc" value ="{{data.letra}}">{{data.letra}} </option>
+                    </select>
+
+                  </div>
+                  <div class="col-md-6">
+                    <label for="floatingInput">Municipio</label>
+                      <select class=" form-control form-select " formControlName="idmunicipio"  name="idmunicipio">
+                        <option  *ngFor="let data of municipios" value ="{{data.id}}">{{data.municipio}}</option>
+                    </select>
+
+                  </div>
+                  <div class="col-md-4 align-self-end">
+                    <button type="submit" class="btn btn-outline-warning mb-3"><i class="fa-solid fa-pen"></i>Editar</button>
+                  </div>
+        </form>
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+

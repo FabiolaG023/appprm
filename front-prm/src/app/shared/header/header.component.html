@@ -1,0 +1,330 @@
+
+<div class="position-relative iq-banner">
+    <nav class="nav navbar navbar-expand-lg  iq-navbar" >
+      <div class="container-fluid navbar-inner" >
+
+        <a href="/formulario-Coordinacion/inicio" class="navbar-brand">
+          <a  class="logo-rectangular" href="/formulario-Coordinacion/inicio" >
+            <img  src="../../../assets/images/logo_fd718e369bc1eac1de44f501f09f665e_2x.png"  class="img-fluid gradient-main animated-scaleX" alt="images">
+          </a>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
+            <a class="py-0 nav-link d-flex align-items-center" href="#"  data-bs-toggle="modal" data-bs-target="#LiderModal">
+              <div *ngIf="imageSrc">
+                <img [src]="imageSrc"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
+              </div>
+              <div class="caption ms-3 d-none d-md-block" *ngIf="statusRes == 302">
+                  <h6 class="mb-0 caption-title">{{lider.idcandidatura.nombre}}</h6>
+                  <p class="mb-0 caption-sub-title">{{lider.nombre}}</p>
+              </div>
+            </a>
+            <li class="nav-item dropdown">
+              <a class="py-0 nav-link d-flex align-items-center"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div *ngIf="foto" >
+                  <img [src]="foto" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
+                </div>
+                <div class="caption ms-3 d-none d-md-block ">
+                    <h6 class="mb-0 caption-title">{{user.usuario}}</h6>
+                    <p class="mb-0 caption-sub-title">{{user.role}}</p>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="formulario-Coordinacion/usuarios">Perfil</a></li>
+                <li><a class="dropdown-item" href="">Privacy Setting</a></li>
+                <li><a class="dropdown-item" (click)=" logOut()">Salir</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+</div>
+
+
+
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <ul class="mb-0 list-unstyled">
+          <li class="mt-2">
+              <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse">
+                  <i class="right-icon me-2">
+                    <i class="fa-solid fa-people-line"></i>
+                  </i>
+                  Coordinadores
+              </button>
+              <ul class="list-unstyled ps-3 collapse" id="components-collapse" >
+                <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/coordMunicipal">Coord.Municipales</a></li>
+                <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/coordZonas">Coord.Zonales</a></li>
+                <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/coordComites">Coord.Comites</a></li>
+
+              </ul>
+          </li>
+          <li class="mt-2">
+            <a class="btn d-inline-flex align-items-center collapsed" href="formulario-Coordinacion/militantes">
+              <i class="right-icon me-2">
+                <i class="fa-solid fa-people-group"></i>
+              </i>
+              Militantes
+          </a>
+          </li>
+
+          <li class="mt-2">
+            <a class="btn d-inline-flex align-items-center collapsed" href="formulario-Coordinacion/comites">
+              <i class="right-icon me-2">
+                <i class="fa-solid fa-users-between-lines"></i>
+              </i>
+              Comites
+          </a>
+          </li>
+
+          <li class="my-2">
+            <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#forms-collapse" aria-controls="forms-collapse">
+                <i class="right-icon me-2">
+                  <i class="fa-solid fa-gears"></i>
+                </i>
+                Configuracion
+            </button>
+            <ul class="list-unstyled ps-3 collapse" id="forms-collapse" >
+
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/zonas">Zonas</a></li>
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/localidades" >Localidades</a></li>
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/colegios" >Colegios</a></li>
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/recintos" >Recintos</a></li>
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/circunscripciones">Circunscripciones</a></li>
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/lider">Lider</a></li>
+              <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/usuarios">Usuarios</a></li>
+
+            </ul>
+        </li>
+
+          <li class="mt-2">
+            <a class="btn d-inline-flex align-items-center collapsed" href="formulario-Coordinacion/coordMunicipal">
+              <i class="right-icon me-2">
+                <i class="fa-regular fa-file"></i>
+              </i>
+              Reportes
+          </a>
+          </li>
+
+
+
+
+      </ul>
+      </ul>
+
+    </div>
+  </div>
+
+
+
+  <!-- Horizontal Menu Start
+  <nav  class="offcanvas offcanvas-start mobile-offcanvas nav navbar navbar-expand-xl hover-nav horizontal-nav mx-md-auto" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" >
+    <div class="container-fluid">
+      <div class="offcanvas-header px-0">
+          <div class="navbar-brand ms-3">
+
+           <div class="logo-main">
+               <div class="logo-normal">
+                   <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
+                       <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
+                       <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
+                       <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
+                   </svg>
+               </div>
+               <div class="logo-mini">
+                   <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
+                       <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
+                       <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
+                       <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
+                   </svg>
+               </div>
+           </div>
+
+
+
+
+
+           <h4 class="logo-title">Hope UI</h4>
+        </div>
+        <button class="btn-close float-end"></button>
+     </div>
+     <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="navbar-nav dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <li class="nav-item"><a class="nav-link" > Coordinadores </a></li>
+            </ul>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="formulario-Coordinacion/coordMunicipal">Coord.Municipales</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/coordZonas">Coord.Zonales</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/coordComites">Coord.Comites</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"   role="button" >
+            <ul class="navbar-nav " >
+              <li class="nav-item"><a class="nav-link"  href="formulario-Coordinacion/militantes"> Militantes </a></li>
+            </ul>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"   role="button" >
+            <ul class="navbar-nav " >
+              <li class="nav-item"><a class="nav-link"  href="formulario-Coordinacion/comites"> Comites</a></li>
+            </ul>
+          </a>
+
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="navbar-nav dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <li class="nav-item"><a class="nav-link" > Configuracion </a></li>
+            </ul>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="formulario-Coordinacion/zonas">Zonas</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/localidades" >Localidades</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/colegios" >Colegios</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/recintos" >Recintos</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/circunscripciones">Circunscripciones</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/lider">Lider</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/usuarios">Usuarios</a></li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"   role="button" >
+            <ul class="navbar-nav " >
+              <li class="nav-item"><a class="nav-link"  href="formulario-Coordinacion/coordMunicipal"> Reportes </a></li>
+            </ul>
+          </a>
+
+        </li>
+     </ul>
+  </div>
+  </nav>
+</div>-->
+
+
+<div class="navbar dual-horizontal ">
+  <nav  class=" mobile-offcanvas nav navbar navbar-expand-xl hover-nav horizontal-nav mx-md-auto">
+    <div class="container-fluid">
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="navbar-nav dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <li class="nav-item"><a class="nav-link" > Coordinadores </a></li>
+            </ul>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="formulario-Coordinacion/coordMunicipal">Coord.Municipales</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/coordZonas">Coord.Zonales</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/coordComites">Coord.Comites</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"   role="button" >
+            <ul class="navbar-nav " >
+              <li class="nav-item"><a class="nav-link"  href="formulario-Coordinacion/militantes"> Militantes </a></li>
+            </ul>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"   role="button" >
+            <ul class="navbar-nav " >
+              <li class="nav-item"><a class="nav-link"  href="formulario-Coordinacion/comites"> Comites</a></li>
+            </ul>
+          </a>
+
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="navbar-nav dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <li class="nav-item"><a class="nav-link" > Configuracion </a></li>
+            </ul>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="formulario-Coordinacion/zonas">Zonas</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/localidades" >Localidades</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/colegios" >Colegios</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/recintos" >Recintos</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/circunscripciones">Circunscripciones</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/lider">Lider</a></li>
+            <li><a class="dropdown-item" href="formulario-Coordinacion/usuarios">Usuarios</a></li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="py-0 nav-link d-flex align-items-center"   role="button" >
+            <ul class="navbar-nav " >
+              <li class="nav-item"><a class="nav-link"  href="formulario-Coordinacion/coordMunicipal"> Reportes </a></li>
+            </ul>
+          </a>
+
+        </li>
+    </div>
+  </nav>
+</div>
+
+
+<!-- Modal LIDER -->
+<div class="modal fade" id="LiderModal" tabindex="-1" aria-labelledby="LiderModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Informacion del Lider / Movimiento</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+             <div class="row m-l-0 m-r-0"*ngIf="statusRes == 302">
+                 <div class="col-sm-4 bg-c-lite-green user-profile">
+                     <div class="card-block text-center text-white">
+                         <div class="m-b-25" >
+                             <img [src]="imageSrc" class="img-lider" alt="User-Profile-Image">
+                         </div>
+                         <h5 class="f-w-600">{{lider.nombre}}</h5>
+                     </div>
+                 </div>
+                 <div class="col-sm-8">
+                     <div class="card-block">
+                         <div class="row">
+                             <div class="col-sm-6" >
+                               <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Provincia:<h6 class="text-muted f-w-400">{{lider.idprovincia.descripcion}}</h6></h5>
+                             </div>
+                               <div class="col-sm-4" >
+                                 <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Municipio:<h6 class="text-muted f-w-400">{{lider.idmunicipio.municipio}}</h6></h5>
+                               </div>
+                               <div class="col-sm-4" >
+                                <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Candidatura:  <h6 class="text-muted f-w-400">{{lider.idcandidatura.nombre}}</h6></h5>
+                              </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+     </div>
+          </div>
+      </div>
+
+</div>
+
+

@@ -1,0 +1,21 @@
+version: '3.8'  # Puedes ajustar la versión según tu instalación de Docker Compose
+
+services:
+  mysql:
+    build: .
+    image: mysql:latest  # Utilizamos la imagen más reciente de MySQL desde Docker Hub
+    container_name: prm-mysql  # Nombre que le das a tu contenedor
+    environment:
+      MYSQL_ROOT_PASSWORD: pass354368  # Contraseña para el usuario root de MySQL
+      MYSQL_DATABASE: sgcp  # Nombre de la base de datos que se creará automáticamente al iniciar el contenedor
+      MYSQL_USER: admin  # Nombre de usuario para la base de datos
+      MYSQL_PASSWORD: pass896315  # Contraseña para el usuario de la base de datos
+    ports:
+      - "3306:3306"  # Mapeamos el puerto 3306 del contenedor al puerto 3306 del host
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistimos los datos de MySQL en un volumen llamado mysql_data
+
+volumes:
+  mysql_data:  # Definimos el volumen mysql_data para persistir los datos de MySQL
+
+     

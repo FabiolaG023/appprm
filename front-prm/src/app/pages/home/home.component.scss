@@ -1,0 +1,45 @@
+.logo-lider {
+  width: 80px; /* Ancho del logo */
+  height: 80px; /* Altura del logo */
+  object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+  border-radius: 50%; /* Convierte la imagen en un círculo mediante el radio de la esquina */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad al logo */
+  transition: all 0.3s ease; /* Agrega una transición suave para efectos de hover */
+
+  &:hover {
+    transform: scale(1.1); /* Escala el logo al 110% del tamaño original al pasar el mouse sobre él */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada en hover */
+  }
+}
+
+.foto {
+  width: 70px; /* Ancho del logo */
+  height: 70px; /* Altura del logo */
+  object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+  border-radius: 50%; /* Convierte la imagen en un círculo mediante el radio de la esquina */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad al logo */
+  transition: all 0.3s ease; /* Agrega una transición suave para efectos de hover */
+
+  &:hover {
+    transform: scale(1.1); /* Escala el logo al 110% del tamaño original al pasar el mouse sobre él */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada en hover */
+  }
+
+
+  .circle {
+    width: 50px;
+    height: 50px;
+   // height: 5cqb;
+  //  background-color: #0C356A; /* Color de fondo del círculo */
+    border-radius: 50%; /* Hace que el elemento sea circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+
+}
