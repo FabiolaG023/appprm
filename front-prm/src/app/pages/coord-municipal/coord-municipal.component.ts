@@ -5,6 +5,7 @@ import { JceapiService } from 'src/app/services/jceapi.service';
 import Swal from 'sweetalert2';
 import { LanguageApp } from '../language-datatable';
 import { PredefinidosService } from 'src/app/services/predefinidos.service';
+import { map } from 'rxjs';
 
 
 
@@ -41,6 +42,7 @@ dataProvincia: any[]=[]
 dataMunicipio: any
 idMunicipio: any
 idProvincia: any
+nameRecinto: any
 
 isValid: any
 
@@ -66,10 +68,25 @@ constructor(
       telefono: new FormControl(''),
     })
 
+    // INPUTS EN MAYUSCULA
+
+    this.formEdit.get('apodo')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
+    .subscribe((newValue: any)=>{  this.formEdit.get('apodo')!.setValue(newValue, { emitEvent: false });});
+
+
    this.formCreate = this.fb.group({
     apodo: new FormControl(''),
     telefono: new FormControl(''),
    })
+
+
+    // INPUTS EN MAYUSCULA
+
+    this.formCreate.get('apodo')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
+    .subscribe((newValue: any)=>{  this.formCreate.get('apodo')!.setValue(newValue, { emitEvent: false });});
+
+
+
 
 }
 
@@ -79,7 +96,7 @@ constructor(
     this.list = res;
     setTimeout(()=>{
   var   t=  $('#datatable').DataTable( {
-        pagingType: 'numbers', //pagingType: 'numbers',
+        pagingType: 'full_numbers', //pagingType: 'numbers',
         pageLength: 15,
         processing: true,
         lengthMenu : [5, 15, 10, 25],
@@ -105,10 +122,13 @@ constructor(
         this.dataJCE = res[0],
          this.idMunicipio = this.dataJCE.IdMunicipio;
          this.idProvincia = this.dataJCE.IdProvincia;
+         this.nameRecinto = this.dataJCE.CodigoRecinto;
+
          this.isValid = this.dataJCE.existe
          if (this.isValid) {
           this.predefinido.getProvincia(this.idProvincia).subscribe((res:any)=>{this.nombreProv = res.descripcion})
           this.predefinido.getMunicipio(this.idMunicipio).subscribe((res:any)=>{this.nombreMuni = res.municipio})
+
           this.jce.getJCEPhoto(cedula).subscribe((res:any)=>{
             this.imageSrc = 'data:image/png;base64,' +  res.Imagen
           });

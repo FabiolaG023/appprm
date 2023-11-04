@@ -251,6 +251,19 @@ return await this.service.createRecinto(data)
 async readRecinto(@Param('id', ParseIntPipe) id: string){
   return await this.service.readRecinto(id)
 }
+
+
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
+@UseGuards(RoleGuard(Role.Admin || Role.User)) 
+@Get('readRecinto/:id')
+async readRecintoName(@Param('id', ParseIntPipe) id: string){
+  return await this.service.readRecinto(id)
+}
+
+
+
+
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseGuards(RoleGuard(Role.Admin || Role.User)) 
