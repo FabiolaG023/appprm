@@ -139,7 +139,6 @@ constructor(
              this.nameRecinto = this.dataJCE.CodigoRecinto;
              this.isValid = this.dataJCE.existe;
 
-
              if (this.isValid) {
             //  this.addForm(this.dataJCE)
               this.predefinido.getProvincia(this.idProvincia).subscribe((res:any)=>{this.nombreProv = res.descripcion})
@@ -147,9 +146,6 @@ constructor(
               this.jce.getJCEPhoto(cedula).subscribe((res:any)=>{
                 this.imageSrc = 'data:image/png;base64,' +  res.Imagen
               });
-
-
-
 
              }else{
               Swal.fire({

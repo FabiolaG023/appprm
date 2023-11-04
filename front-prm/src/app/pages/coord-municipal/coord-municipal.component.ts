@@ -83,8 +83,6 @@ constructor(
     .subscribe((newValue: any)=>{  this.formCreate.get('apodo')!.setValue(newValue, { emitEvent: false });});
 
 
-
-
 }
 
   ngOnInit(): void {
