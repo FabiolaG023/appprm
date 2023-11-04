@@ -237,6 +237,7 @@ constructor(
   selecctData(id: number){
     this.service.readCoordZona(id).subscribe((res:any)=>{
       this.coordZonal = res
+      console.log(this.coordZonal)
       this.foto = res.foto
 
       this.formEdit.patchValue({
