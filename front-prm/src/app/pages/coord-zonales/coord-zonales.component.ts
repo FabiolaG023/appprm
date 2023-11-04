@@ -79,7 +79,7 @@ constructor(
     // INPUTS EN MAYUSCULA
 
     this.formCreate.get('apodo')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
-    .subscribe((newValue: any)=>{  this.formCreate.get('apodo')!.setValue(newValue, { emitEvent: false });});
+    .subscribe((newValue: any)=>{  this.formCreate.get('apodo')!.setValue(newValue, { emitEvent: false});});
 
 
 
@@ -233,14 +233,13 @@ constructor(
   selecctData(id: number){
     this.service.readCoordZona(id).subscribe((res:any)=>{
       this.coordZonal = res
-      console.log(this.coordZonal)
       this.foto = res.foto
 
       this.formEdit.patchValue({
         apodo: res['apodo'],
         telefono: res['telefono'],
-        idzona: res['idzona'],
-        idcoordmunicipal: res['idcoordmunicipal']
+        idzona: res['idzona'].id,
+        idcoordmunicipal: res['idcoordmunicipal'].id
       })
       this.coordZ = res
     })
