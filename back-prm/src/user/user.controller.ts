@@ -37,16 +37,7 @@ async createUser(@Body() data: UserDto){
 }
 
 
-@Post('/singup')
-async singup(@Body() data: UserDto){
-  try {
-   return await this.service.singup(data);
-  } catch (error) {
-    return  error 
-  }
 
-
-}
 
 
 @UseGuards(AuthGuard('jwt'))

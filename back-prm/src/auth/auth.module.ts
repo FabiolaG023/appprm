@@ -8,11 +8,14 @@ import { appConstants } from '../constans';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
+import { UserEntity } from 'src/user/user.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
     ConfigModule,
     UserModule, 
+    TypeOrmModule.forFeature([UserEntity]),
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
       secret: appConstants.jwtSecret,

@@ -1,13 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
 
 userData: any[]=[]
 
-    constructor(private userService: UserService, private jwtService: JwtService){}
+    constructor(
+        private userService: UserService, 
+        private jwtService: JwtService,
+        
+        @InjectRepository(UserEntity)
+    private readonly respo: Repository<UserEntity>){}
   
 // funcion asincrona que valida el usuario y la contraseña
     async validateUser(data): Promise<any>{
@@ -60,6 +68,24 @@ async login(user: any){
         nombre: user.nombre};
 }
 
-
+async singup(data:any){
+    const {usuario, password}= data
+ 
+    const userFound = this.respo.findOne({where:{usuario: data.usuario}})
+ 
+    try {
+       if (userFound) {
+          console.log(`${data.usuario} Existe, intente de nuevo!`)
+       }else{
+           const newUser = this.respo.create(data)
+           this.respo.save(newUser)
+       }
+ 
+    } catch (error) {
+       throw error
+      
+    }
+ }
+ 
 
 }

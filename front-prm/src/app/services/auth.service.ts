@@ -23,7 +23,7 @@ export class AuthService {
 
 
   singup(data: any){
-    let api = `${this.restApi}/user/singup`;
+    let api = `${this.restApi}/auth/singup`;
      return this.http.post<any>(api, data).pipe(
        map((res) => {return res || {};}),
        catchError(this.handleError));

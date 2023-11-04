@@ -48,26 +48,6 @@ export class UserService {
     }
  }
 
- async singup(data:any){
-   const {usuario, password}= data
-
-   const userFound = this.respo.findOne({where:{usuario: data.usuario}})
-
-   try {
-      if (userFound) {
-         console.log(`${data.usuario} Existe, intente de nuevo!`)
-      }else{
-          const newUser = this.respo.create(data)
-          this.respo.save(newUser)
-         
-
-      }
-
-   } catch (error) {
-      throw error || new UnauthorizedException()  
-     
-   }
-}
 
 
  async read(id: string){
