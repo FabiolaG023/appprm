@@ -5,6 +5,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { IUser } from './login.dto';
 import RoleGuard from './guard/roles.guard';
 import Role from './enum/roles.enum';
+import { UserDto } from 'src/user/user.dto';
 
 
 
@@ -24,6 +25,17 @@ export class AuthController {
     return await this.service.generateAccessToken(usuario);
   }
 
+
+@Post('/singup')
+async singup(@Body() data: UserDto){
+  try {
+   return await this.service.singup(data);
+  } catch (error) {
+    return  error 
+  }
+
+
+}
 
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth() 

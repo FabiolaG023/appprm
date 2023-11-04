@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LiderService } from 'src/app/services/lider.service';
 import { PredefinidosService } from 'src/app/services/predefinidos.service';
@@ -39,7 +40,12 @@ export class SingupComponent implements OnInit {
       idprovincia: new FormControl ('', Validators.required),
       idmunicipio: new FormControl ('', Validators.required)
      })
+     // CONVERTIR EN MAYUSCULAS
+     this.newform.get('nombre')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
+     .subscribe((newValue: any)=>{  this.newform.get('nombre')!.setValue(newValue, { emitEvent: false });});
 
+     this.newform.get('apellido')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
+     .subscribe((newValue: any)=>{  this.newform.get('apellido')!.setValue(newValue, { emitEvent: false });});
     }
 
     ngOnInit(): void {

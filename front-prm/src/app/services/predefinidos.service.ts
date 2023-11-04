@@ -225,6 +225,7 @@ allRecinto(){
     .pipe(map((res)=> { return res || {};}), catchError(this.handleError));
    }
 
+
    updateRecinto(id:any, data: any){
     const httpHeaders = this.getHeadersToken();
     let api_url = `${this.restApi}/predefinido/updateRecinto/${id}`;

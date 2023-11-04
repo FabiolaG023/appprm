@@ -8,6 +8,7 @@ import { JceapiService } from 'src/app/services/jceapi.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
 import decode from 'jwt-decode';
+import { map } from 'rxjs';
 
 
 
@@ -72,12 +73,30 @@ constructor(
     idzona: new FormControl(null),
 
    })
+
+
+    // INPUTS EN MAYUSCULA
+
+    this.formCreate.get('apodo')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
+    .subscribe((newValue: any)=>{  this.formCreate.get('apodo')!.setValue(newValue, { emitEvent: false });});
+
+
+
+
    this.formEdit = this.fb.group({
     apodo:(''),
     telefono:(''),
     idcoordmunicipal:(null),
     idzona:(null),
    })
+
+
+    // INPUTS EN MAYUSCULA
+
+    this.formEdit.get('apodo')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
+    .subscribe((newValue: any)=>{  this.formEdit.get('apodo')!.setValue(newValue, { emitEvent: false });});
+
+
 
 }
 
@@ -226,7 +245,6 @@ constructor(
       this.coordZ = res
     })
       }
-
 
   deleteData(id: number){
     Swal.fire({

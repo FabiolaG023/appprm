@@ -327,6 +327,17 @@ export class PredefinidoService {
           throw error
       }
       } 
+       async readRecintoName(recinto: any){
+        const found = await this.recinto.findOneBy(recinto)
+        try {
+          if (found) {
+            return found
+          }
+        } catch (error) {
+          return error
+        }
+       }
+
     async deleteRecinto(id: string){
       const found = await this.recinto.findOne({where:{id}})
           try {

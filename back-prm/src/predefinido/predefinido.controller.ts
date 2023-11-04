@@ -13,17 +13,13 @@ export class PredefinidoController {
 
   constructor(private service: PredefinidoService) { }
 
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
-  @UseGuards(RoleGuard(Role.Admin || Role.User)) 
+
   @Get('allProvincias')
   async getProvincias(){
     return await this.service.allP()
   }
   
-  @UseGuards(AuthGuard('jwt'))
-@ApiBearerAuth()
-@UseGuards(RoleGuard(Role.Admin || Role.User)) 
+
   @Get('allMunicipios')
   async getMunicipios(){
     return await this.service.allM()
@@ -69,9 +65,7 @@ export class PredefinidoController {
     return await this.service.getP(id)
   }
 
-@UseGuards(AuthGuard('jwt'))
-@ApiBearerAuth()
-@UseGuards(RoleGuard(Role.Admin || Role.User)) 
+
   @Get('MunicipiosXProvincia/:id')
   async getOneMunicipios(@Param('id', ParseIntPipe) id: number){
     return await this.service.getMunicipiosXProvincia(id)
@@ -257,6 +251,19 @@ return await this.service.createRecinto(data)
 async readRecinto(@Param('id', ParseIntPipe) id: string){
   return await this.service.readRecinto(id)
 }
+
+
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
+@UseGuards(RoleGuard(Role.Admin || Role.User)) 
+@Get('readRecinto/:id')
+async readRecintoName(@Param('id', ParseIntPipe) id: string){
+  return await this.service.readRecinto(id)
+}
+
+
+
+
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseGuards(RoleGuard(Role.Admin || Role.User)) 
