@@ -189,8 +189,6 @@ constructor(
             }
 
 
-
-
  addData(data: any){
 
 // si la cedula existe en los coordinadores de zona o existe en los coordinadores de muniicpales o si no existe en la API de la junta
