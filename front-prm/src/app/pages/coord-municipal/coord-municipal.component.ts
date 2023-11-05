@@ -90,7 +90,7 @@ constructor(
    this.service.allCoordMuni().subscribe((res: any)=>{
     this.list = res;
     setTimeout(()=>{
-  var   t=  $('#datatable').DataTable( {
+    var t=  $('#datatable').DataTable( {
         pagingType: 'full_numbers', //pagingType: 'numbers',
         pageLength: 15,
         processing: true,
@@ -103,8 +103,6 @@ constructor(
         let i = 1;
         t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {this.data(i++); });}).draw();
     }, 1);
-
-
   })
   }
 

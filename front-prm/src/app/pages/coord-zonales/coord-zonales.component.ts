@@ -110,7 +110,6 @@ constructor(
     let decodetoken: any = {};
     decodetoken = decode(this.token);
 
-
     this.coordMuniService.allCoordMuni().subscribe((res:any)=>{this.coordM = res})
     this.predefinido.allZona().subscribe((res:any)=>{this.allZonas = res})
     this.predefinido.getProvincias().subscribe((res:any)=>{this.provincias = res})
@@ -119,13 +118,18 @@ constructor(
    this.service.allCoordZona().subscribe((res: any)=>{
     this.list = res;
     setTimeout(()=>{
-      $('#datatable').DataTable( {
+      var t= $('#datatable').DataTable( {
         pagingType: 'full_numbers',
         pageLength: 15,
         processing: true,
         lengthMenu : [5, 15, 10, 25],
-        language: LanguageApp.spanish_datatables
-    } );
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [ { searchable: false, orderable: false, targets: 0 }],
+        order: [[1, 'asc']]
+        } );
+        t.on('order.dt search.dt', function () {
+          let i = 1;
+          t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {this.data(i++); });}).draw();
     }, 1);
 
   })
