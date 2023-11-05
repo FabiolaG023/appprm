@@ -236,7 +236,6 @@ constructor(
     this.service.readCoordZona(id).subscribe((res:any)=>{
       this.coordZonal = res
       this.foto = res.foto
-
       this.formEdit.patchValue({
         apodo: res['apodo'],
         telefono: res['telefono'],
