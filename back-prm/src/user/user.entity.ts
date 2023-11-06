@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, BeforeInsert, OneToMany} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, BeforeInsert, OneToMany, ManyToOne, JoinColumn} from "typeorm";
 import * as bcrypt from 'bcrypt'
 import Role from "src/auth/enum/roles.enum";
+import { MunicipiosEntity, ProvinciasEntity } from "src/predefinido/predefinido.entity";
 
 
 
@@ -20,8 +21,6 @@ export class UserEntity {
     @Column({type: 'text'})
     foto: string;
 
-
-
     @Column({ type: 'varchar', length: 70, nullable: false })
     password: string;
 
@@ -37,12 +36,18 @@ export class UserEntity {
     @Column({type: 'varchar', default: "user"})
     role!: Role;
 
-   @Column({ type: 'int'})
-    idprovincia: number;
-    
 
-    @Column({ type: 'int'})
-    idmunicipio:number;
+    @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idprovincia',referencedColumnName: 'id', foreignKeyConstraintName: "usuario-provincia"})
+    @Column({ type: 'int', nullable: true})
+    idprovincia: ProvinciasEntity;
+
+
+    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "usuario-municipio"})
+    @Column({ type: 'int', nullable: true})
+    idmunicipio: MunicipiosEntity;
+
 
 
 }

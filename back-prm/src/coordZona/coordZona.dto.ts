@@ -42,7 +42,6 @@ export class CoordZonaDto {
     @IsNumber()
     idcolegio: number;
 
-
     @IsNotEmpty()
     @IsNumber()
     idzona: number;
@@ -60,7 +59,9 @@ export class CoordZonaDto {
     idcoordmunicipal: number;
 
 
-
+    @IsOptional()
+    @IsNumber() 
+    idlocalidad: number;
 
 }
 
@@ -83,6 +84,10 @@ export class CoordZonaUpdateDto{
     @IsOptional()
     @IsNumber()
     idcoordmunicipal: number;
+
+    @IsOptional()
+    @IsNumber() 
+    idlocalidad: number;
 
 
 

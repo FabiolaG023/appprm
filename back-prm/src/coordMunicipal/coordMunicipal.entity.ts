@@ -12,46 +12,44 @@ export class CoordMunicipalEntity {
     @Column({length: 20, unique: true})
     cedula: string;
 
-
     @Column({length: 100})
     apellido: string;
-
 
     @Column({length: 100})
     apodo: string;
 
-    @Column({length: 100})
+    @Column({length: 100, nullable: true})
     telefono: string;
 
     @Column({type: 'text'})
     foto: string;
 
-    @ManyToOne(()=> CircunscripcionesEntity)
-    @JoinColumn({name: 'idcircunscripcion'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> CircunscripcionesEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idcircunscripcion', referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-circunscripcion"})
+    @Column({ type: 'int', nullable: true})
     idcircunscripcion: CircunscripcionesEntity;
 
-    @ManyToOne(()=> RecintosEntity)
-    @JoinColumn({name: 'idrecinto'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> RecintosEntity, { onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idrecinto', referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-recinto"})
+    @Column({ type: 'int', nullable: true})
     idrecinto: RecintosEntity;
 
 
-    @ManyToOne(()=> ColegiosEntity)
-    @JoinColumn({name: 'idcolegio'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> ColegiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idcolegio',referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-colegio"})
+    @Column({ type: 'int', nullable: true})
     idcolegio: ColegiosEntity;
 
 
-    @ManyToOne(()=> ProvinciasEntity)
-    @JoinColumn({name: 'idprovincia'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idprovincia',referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-provincia"})
+    @Column({ type: 'int', nullable: true})
     idprovincia: ProvinciasEntity;
 
 
-    @ManyToOne(()=> MunicipiosEntity)
-    @JoinColumn({name: 'idmunicipio'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-municipio"})
+    @Column({ type: 'int', nullable: true})
     idmunicipio: MunicipiosEntity;
 
 

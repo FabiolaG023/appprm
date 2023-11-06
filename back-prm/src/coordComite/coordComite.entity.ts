@@ -26,11 +26,12 @@ export class CoordComiteEntity {
      @Column({length: 100})
      apodo: string;
  
-     @ManyToOne(()=> ZonasEntity)
-     @JoinColumn({name: 'idzona', referencedColumnName: 'id'})
-     @Column({ type: 'int'})
+     @ManyToOne(()=> ZonasEntity,{onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+     @JoinColumn({name: 'idzona', referencedColumnName: 'id', foreignKeyConstraintName: "coordComite-zonas"})
+     @Column({ type: 'int', nullable: true})
      idzona: ZonasEntity;
    
+     
  
      @ManyToOne(()=> CoordZonaEntity)
      @JoinColumn({name: 'idcoordzona', referencedColumnName: 'id'})
