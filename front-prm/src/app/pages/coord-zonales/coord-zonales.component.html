@@ -138,7 +138,7 @@
                         </div>
                       </div>
                       <div class="row">
-                        <form class="row g-3" [formGroup]="formCreate" (ngSubmit)="addData(this.dataJCE)"   >
+                        <form class="row g-3" [formGroup]="formCreate" (ngSubmit)="addData(this.dataJCE)">
                           <div class="col-md-6">
                             <label for="floatingInput">Apodo</label>
                             <div class="form-group input-group form-group-alt">
@@ -284,7 +284,6 @@
         </div>
         <form [formGroup]="formEdit" (ngSubmit)="updateData(coordZ.id)">
           <div class="modal-body">
-
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="floatingInput">Apodo</label>
@@ -325,9 +324,9 @@
                     <option  *ngFor="let data of coordM" value ="{{data.id}}" >{{data.nombre}} {{data.apellido}}
                     </option>
                   </select>
-
-
-
+                </div>
+              </div>  
+            </div>
             <div class="card user-card-full">
             <div class="row m-l-0 m-r-0">
               <div class="col-sm-4 bg-c-lite-green user-profile">
@@ -367,7 +366,7 @@
                           </div>
                         </div>
                     </div>
-
+                  </div>
                 </div>
               </div>
             </div>
