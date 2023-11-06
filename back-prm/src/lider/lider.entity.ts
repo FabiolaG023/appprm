@@ -6,29 +6,25 @@ export class LiderEntity {
 
    @PrimaryGeneratedColumn() id:string;
 
-    @Column({length: 100})
+    @Column({length: 100, unique: true})
     nombre: string;
-
 
     @Column({type: 'text'})
     foto: string;
 
-    @ManyToOne(()=> ProvinciasEntity)
-    @JoinColumn({name: 'idprovincia'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idprovincia', referencedColumnName: 'id', foreignKeyConstraintName: "lider-provincia"})
+    @Column({ type: 'int', nullable: true})
     idprovincia: ProvinciasEntity;
 
 
-    @ManyToOne(()=> MunicipiosEntity)
-    @JoinColumn({name: 'idmunicipio'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "lider-municipio"})
+    @Column({ type: 'int', nullable: true})
     idmunicipio: MunicipiosEntity;
 
-    @ManyToOne(()=> CandidaturaEntity)
-    @JoinColumn({name: 'idcandidatura'})
-    @Column({ type: 'int'})
+    @ManyToOne(()=> CandidaturaEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idcandidatura', referencedColumnName: 'id', foreignKeyConstraintName: "lider-candidatura"})
+    @Column({ type: 'int', nullable: true})
     idcandidatura: CandidaturaEntity;
-
-
-
 }

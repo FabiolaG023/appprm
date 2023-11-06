@@ -5,7 +5,15 @@ import { CoordZonaEntity } from './coordZona.entity';
 import { CoordZonaService } from './coordZona.service';
 
 import { CoordMunicipalEntity } from 'src/coordMunicipal/coordMunicipal.entity';
-import { CircunscripcionesEntity, ColegiosEntity, MunicipiosEntity, ProvinciasEntity, RecintosEntity, ZonasEntity } from 'src/predefinido/predefinido.entity';
+import { 
+  CircunscripcionesEntity, 
+  ColegiosEntity, 
+   MunicipiosEntity, 
+  ProvinciasEntity, 
+  RecintosEntity, 
+  ZonasEntity, 
+  LocalidadEntity 
+} from 'src/predefinido/predefinido.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([
@@ -16,7 +24,8 @@ import { CircunscripcionesEntity, ColegiosEntity, MunicipiosEntity, ProvinciasEn
      MunicipiosEntity,
      CircunscripcionesEntity,
      RecintosEntity,
-     ColegiosEntity
+     ColegiosEntity,
+     LocalidadEntity
   ])],
   providers: [CoordZonaService],
   controllers: [CoordZonaController]

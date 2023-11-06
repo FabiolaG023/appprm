@@ -34,25 +34,21 @@ export class CoordmunicipalDto {
     @IsNumber()
     idmunicipio: number;
 
+    @IsNotEmpty()
+    idcircunscripcion: number;
 
+    @IsNotEmpty()
+    @IsNumber()
+    idrecinto: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    idcolegio: number
 
 }
 
 
-
 export class CoordmunicipalUpdateDto{
-
-    @IsOptional()
-    @IsString() 
-    nombre: string;
-
-    @IsOptional()
-    @IsString() 
-    apellido: string;
-
-    @IsOptional()
-    @IsString() 
-    cedula: string;
 
 
     @IsOptional()

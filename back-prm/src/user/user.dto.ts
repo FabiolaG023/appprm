@@ -21,9 +21,11 @@ export class UserDto {
     password: string;
 
     @IsNotEmpty()
+    @IsNumber()
     idmunicipio: number;
 
     @IsNotEmpty()
+    @IsNumber()
     idprovincia: number;
 
     @IsNotEmpty()
@@ -58,11 +60,11 @@ export class UserUpdateDto{
     password: string;
 
     @IsOptional()
-    @IsString()
-    idmunicipio: string;
+    @IsNumber()
+    idmunicipio: number;
 
     @IsOptional()
-    @IsString()
-    idprovincia: string;
+    @IsNumber()
+    idprovincia: number;
 
 }

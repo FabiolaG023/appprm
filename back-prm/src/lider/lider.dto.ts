@@ -11,16 +11,18 @@ export class LiderDto {
     @IsString()
     foto: string;
 
-    @IsOptional()
-    @IsString()
-    logo: string;
-
-    @IsOptional()
+    @IsNotEmpty()
     @IsNumber()
     idcandidatura: number;
 
+    @IsNotEmpty()
+    @IsNumber()
+    idmunicipio: number;
 
 
+    @IsNotEmpty()
+    @IsNumber()
+    idprovincia: number;
 
 }
 
@@ -35,10 +37,6 @@ export class LiderUpdateDto{
     @IsOptional()
     @IsString()
     foto: string;
-
-    @IsOptional()
-    @IsString()
-    logo: string;
 
     @IsOptional()
     @IsNumber()
