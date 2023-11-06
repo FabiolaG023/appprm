@@ -52,6 +52,7 @@ export class CoordZonalesComponent implements OnInit {
   listCoordM:any[]=[]
 
   allZonas: any[]=[]
+  allLocalidad: any[]=[]
 
   coordZonal: any=[]
 
@@ -72,7 +73,7 @@ constructor(
     telefono: new FormControl(''),
     idcoordmunicipal: new FormControl(null, Validators.required),
     idzona: new FormControl(null),
-
+    idlocalidad: new FormControl(null)
    })
 
 
@@ -89,6 +90,7 @@ constructor(
     telefono:(''),
     idcoordmunicipal:(null),
     idzona:(null),
+    idlocalidad: ('')
    })
 
 
@@ -112,6 +114,7 @@ constructor(
 
     this.coordMuniService.allCoordMuni().subscribe((res:any)=>{this.coordM = res})
     this.predefinido.allZona().subscribe((res:any)=>{this.allZonas = res})
+    this.predefinido.allLocalidad().subscribe((res:any)=>{this.allLocalidad = res})
     this.predefinido.getProvincias().subscribe((res:any)=>{this.provincias = res})
    // this.predefinido.getMunicipiosXProvincia(decodetoken.idprovincia).subscribe((res:any)=>{ this.municipios = res })
 
@@ -240,7 +243,8 @@ constructor(
         apodo: res['apodo'],
         telefono: res['telefono'],
         idzona: res['idzona'].id,
-        idcoordmunicipal: res['idcoordmunicipal'].id
+        idcoordmunicipal: res['idcoordmunicipal'].id,
+        idlocalidad: res['idlocalidad'].id
       })
       this.coordZ = res
     })

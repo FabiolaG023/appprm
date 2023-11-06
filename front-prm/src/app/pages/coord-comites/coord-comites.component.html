@@ -1,375 +1,341 @@
+<!--DATATABLE-->
 <div class="col-md-12">
   <div class="card" data-aos="fade-up" data-aos-delay="800">
-  <div class="flex-wrap card-header d-flex justify-content-between align-items-center">
-      <div class="header-title">
-          <h4 class="card-title">Coordinadores de Comite</h4>
-      </div>
-      <div class="flex-wrap card-header d-flex justify-content-between align-items-end">
-            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#formularioCedulaModal">
-              <span class="btn-inner">
-                <i class="fa-solid fa-plus"></i>
-              </span>
-              Nuevo
-            </button>
-      </div>
-  </div>
-  <div class="card-body">
-    <div class="row justify-content-around">
-    <div class="table-responsive" >
+    <div class="flex-wrap card-header d-flex justify-content-between align-items-center">
+        <div class="header-title">
+            <h4 class="card-title"><i class="fa-solid fa-people-roof"></i> Coordinadores de Comite</h4>
+        </div>
+        <div class="flex-wrap card-header d-flex justify-content-between align-items-end">
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#formularioCedulaModal">
+            <span class="btn-inner">
+              <i class="fa-solid fa-plus"></i>
+            </span>
+            Nuevo
+          </button>
+        </div>
+    </div>
+    <div class="card-body">
+      <div class="row justify-content-around">
+        <div class="table-responsive" >
           <table class="display" id="datatable" style="width:100%" >
-              <thead>
-                <tr >
-                    <th></th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Apodo</th>
-                    <th>Cedula</th>
-                    <th>Telefono</th>
-                    <th>Opciones</th>
-                </tr>
-              </thead>
-              <tbody >
-                <tr *ngFor=" let data of list ">
-                  <td></td>
-                  <td>{{data.nombre}}</td>
-                  <td>{{data.apellido}}</td>
-                  <td>{{data.apodo}}</td>
-                  <td>{{data.cedula}}</td>
-                  <td>{{data.telefono}}</td>
-
-                  <td>
-                    <div class="btn-group me-2" role="group" aria-label="Second group">
-                      <a class="btn-outline-primary  btn-icon btn-sm p-2"  (click)="selecctData(data.id)"  data-bs-toggle="modal" data-bs-target="#EditModal"><i class="fa-regular fa-pen-to-square"></i></a>
-                      <a class="btn-outline-primary  btn-icon btn-sm p-2"  (click)="selecctData(data.id)"  data-bs-toggle="modal" data-bs-target="#ViewModal"><i class="fa-regular fa-eye"></i></a>
-                      <a class="btn-outline-primary btn-sm p-2 btn-icon text-danger"  (click)="deleteData(data.id)" ><i class="fa-regular fa-trash-can"></i></a>
+            <thead>
+              <tr >
+                  <th></th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Apodo</th>
+                  <th>Cedula</th>
+                  <th>Telefono</th>
+                  <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor=" let data of list ">
+                <td></td>
+                <td>{{data.nombre}}</td>
+                <td>{{data.apellido}}</td>
+                <td>{{data.apodo}}</td>
+                <td>{{data.cedula}}</td>
+                <td>{{data.telefono}}</td>
+                <td>
+                  <div class="btn-group me-2" role="group" aria-label="Second group">
+                    <a class="btn btn-icon text-primary flex-end" data-bs-toggle="tooltip" title="Editar"  (click)="selecctData(data.id)"  data-bs-toggle="modal" data-bs-target="#EditModal"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a class="btn btn-icon text-primary flex-end" data-bs-toggle="tooltip" title="Detalles"  (click)="selecctData(data.id)"  data-bs-toggle="modal" data-bs-target="#ViewModal"><i class="fa-regular fa-eye"></i></a>
+                    <a class="btn btn-icon text-danger flex-end" data-bs-toggle="tooltip" title="Eliminar"  (click)="deleteData(data.id)" ><i class="fa-regular fa-trash-can"></i></a>
                   </div>
-                  </td>
-                </tr>
-              </tbody>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
- </div>
+      </div>
+    </div>
   </div>
 </div>
 
- <!-- Modal FORMULARIO CEDULA-->
- <div class="modal fade" id="formularioCedulaModal" tabindex="-1" aria-labelledby="formularioCedulaModalLabel" aria-hidden="true">
+<!-- Modal FORMULARIO CEDULA-->
+<div class="modal fade" id="formularioCedulaModal" tabindex="-1" aria-labelledby="formularioCedulaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id="formularioCedulaModal"><i class="fa-regular fa-clone"></i>Nuevo Coordinador de Comite</h1>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-    </div>
-    <div class="modal-body">
-       <div class="col-md-12">
-            <div class="card-body">
-                <div class="container">
-                  <div class="main-body">
-                    <div class="row g-3 justify-content-center">
-                        <div class="input-group mb-3">
-                          <input type="text" class="form-control" [(ngModel)]="cedula"   name="cedula" placeholder="Cedula" >
-                          <span class="input-group-text">
-                            <button type="submit" (click)="getDataJCE(cedula)" class="btn btn-outline-primary">
-                              <i class="fa-solid fa-magnifying-glass"></i></button>
-                          </span>
-                      </div>
-                    </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="formularioCedulaModal"><i class="fa-regular fa-clone"></i>Nuevo Coordinador de Comite</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <div class="card-body">
+            <div class="container">
+              <div class="main-body">
+                <div class="row g-3 justify-content-center">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="cedula"   name="cedula" placeholder="Cedula" >
+                    <span class="input-group-text">
+                      <button type="submit" (click)="getDataJCE(cedula)" class="btn btn-outline-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                    </span>
                   </div>
                 </div>
+              </div>
             </div>
-       </div>
-       <div *ngIf="isValid == true">
-        <div class="col-md-12 ">
-          <div class="card user-card-full">
-            <div class="row m-l-0 m-r-0">
+          </div>
+        </div>
+        <div *ngIf="isValid == true">
+          <div class="col-md-12 ">
+            <div class="card user-card-full">
+              <div class="row m-l-0 m-r-0">
                 <div class="col-sm-4 bg-c-lite-green user-profile">
-                    <div class="card-block text-center text-white">
-                        <div class="m-b-25" *ngIf="imageSrc">
-                            <img [src]="imageSrc" class="img-radius" alt="User-Profile-Image">
-                        </div>
-                        <h5 class="f-w-600">{{dataJCE.NombresPlastico}}</h5>
-                        <h5 class="f-w-600">{{dataJCE.ApellidosPlastico}}</h5>
-                        <p >{{dataJCE.Cedula}}</p>
-
-                        <div *ngIf="dataJCE.existe; else templateName">
-                          <span class="badge bg-success">Activo</span>
-                      </div>
-                      <ng-template #templateName>
-                        <div *ngIf="dataJCE.existe==false">
-                          <span class="badge bg-danger">Inactivo</span>
-                        </div>
-                      </ng-template>
-
-                        <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                  <div class="card-block text-center text-white">
+                    <div class="m-b-25" *ngIf="imageSrc">
+                      <img [src]="imageSrc" class="img-radius" alt="User-Profile-Image">
                     </div>
+                    <h5 class="f-w-600">{{dataJCE.NombresPlastico}}</h5>
+                    <h5 class="f-w-600">{{dataJCE.ApellidosPlastico}}</h5>
+                    <p >{{dataJCE.Cedula}}</p>
+                    <div *ngIf="dataJCE.existe; else templateName">
+                      <span class="badge bg-success">Activo</span>
+                    </div>
+                    <ng-template #templateName>
+                      <div *ngIf="dataJCE.existe==false">
+                        <span class="badge bg-danger">Inactivo</span>
+                      </div>
+                    </ng-template>
+                    <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                  </div>
                 </div>
                 <div class="col-sm-8">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-sm-4">
-                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Provincia: <h6 class="text-muted f-w-400">{{nombreProv}}</h6></h5>
-                                <h5 class="m-b-16 f-w-600"></h5>
-                            </div>
-                              <div class="col-sm-4">
-                                <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Municipio: <h6 class="text-muted f-w-400">{{nombreMuni}}</h6></h5>
-                                  <h5 class="m-b-16 f-w-600"></h5>
-                              </div>
-                                <div class="col-sm-4">
-
-                                    <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Circuns: <h6 class="text-muted f-w-400"> {{dataJCE.CodigoCircunscripcion}}</h6></h5>
-                                  </div>
-
-                                <div class="col-sm-4">
-
-                                    <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Recinto: <h6 class="text-muted f-w-400">{{dataJCE.CodigoRecinto}}</h6></h5>
-                                  </div>
-
-                                <div class="col-sm-4">
-                                  <div >
-                                    <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Colegio: <h6 class="text-muted f-w-400">{{dataJCE.colegio}}</h6></h5>
-                                  </div>
-                                </div>
-
+                  <div class="card-block">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Provincia: <h6 class="text-muted f-w-400">{{nombreProv}}</h6></h5>
+                        <h5 class="m-b-16 f-w-600"></h5>
+                      </div>
+                      <div class="col-sm-4">
+                        <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Municipio: <h6 class="text-muted f-w-400">{{nombreMuni}}</h6></h5>
+                          <h5 class="m-b-16 f-w-600"></h5>
+                      </div>
+                      <div class="col-sm-4">
+                        <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Circuns: <h6 class="text-muted f-w-400"> {{dataJCE.CodigoCircunscripcion}}</h6></h5>
+                      </div>
+                      <div class="col-sm-4">
+                        <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Recinto: <h6 class="text-muted f-w-400">{{dataJCE.CodigoRecinto}}</h6></h5>
+                      </div>
+                      <div class="col-sm-4">
+                        <div >
+                          <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Colegio: <h6 class="text-muted f-w-400">{{dataJCE.colegio}}</h6></h5>
                         </div>
-                        <div class="row">
-
-                          <form class="row g-3" [formGroup]="formCreate" (ngSubmit)="addForm()"  >
-
-
-                            <div class="col-md-6">
-                              <label for="floatingInput">Apodo</label>
-                              <div class="form-group input-group form-group-alt">
-                                <input type="text" class="form-control" formControlName="apodo"   name="apodo" style="text-transform:uppercase;" >
-                                <span class="input-group-text" id="basic-addon2">abc</span>
-                              </div>
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="floatingInput">Telefono</label>
-                              <div class="form-group input-group form-group-alt">
-                                <input type="text" class="form-control"  formControlName="telefono"  name="telefono" >
-                                <span class="input-group-text" id="basic-addon2">abc</span>
-                              </div>
-                            </div>
-
-                            <div class="col-md-6">
-                              <label for="floatingInput"> <span  style="color: rgb(255, 0, 0);"> * </span>Coord. de Zonas</label>
-                              <div class="form-group input-group form-group-alt">
-                                <select class="form-select form-select-sm"   formControlName="idcoordzona"  [(ngModel)]="zonaXcoor"  (change)="findZonas()" >
-                                  <option  *ngFor="let data of listCoordZona"   value="{{data.id}}" >{{data.nombre}} {{data.apellido}} </option>
-                                </select>
-                               </div>
-                            </div>
-
-                            <div class="col-md-6">
-                            <div *ngIf="!zonaXcoor ||  zonaXcoor ==null; else existe">
-                              <span  style="color: rgb(255, 0, 0);"> No cuenta con zonas </span>
-                              </div>
-                            </div>
-
-
-
-                            <ng-template #existe>
-                              <div class="col-md-6">
-                                <label for="floatingInput">Zonas</label>
-                                <div class="form-group input-group form-group-alt" >
-                                  <select class="form-select form-select-sm" formControlName="idzona" >
-                                    <option  *ngFor="let data of listZonas" value="{{data.zona_id}}" >{{data.zona_zona}} </option>
-                                  </select>
-                                </div>
-                              </div>
-                            </ng-template>
-
-
-
-                            <button type="submit"  class="btn btn-outline-primary">Guardar</button>
-
-                        </form>
-                        </div>
+                      </div>
                     </div>
+                    <div class="row">
+                      <form class="row g-3" [formGroup]="formCreate" (ngSubmit)="addForm()"  >
+                        <div class="col-md-6">
+                          <label for="floatingInput">Apodo</label>
+                          <div class="form-group input-group form-group-alt">
+                            <input type="text" class="form-control" formControlName="apodo"   name="apodo" style="text-transform:uppercase;" >
+                            <span class="input-group-text" id="basic-addon2">abc</span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="floatingInput">Telefono</label>
+                          <div class="form-group input-group form-group-alt">
+                            <input type="text" class="form-control"  formControlName="telefono"  name="telefono" >
+                            <span class="input-group-text" id="basic-addon2">abc</span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="floatingInput"> <span  style="color: rgb(255, 0, 0);"> * </span>Coord. de Zonas</label>
+                          <div class="form-group input-group form-group-alt">
+                            <select class="form-select form-select-sm"   formControlName="idcoordzona"  [(ngModel)]="zonaXcoor"  (change)="findZonas()" >
+                              <option  *ngFor="let data of listCoordZona"   value="{{data.id}}" >{{data.nombre}} {{data.apellido}} </option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div *ngIf="!zonaXcoor ||  zonaXcoor ==null; else existe">
+                            <span  style="color: rgb(255, 0, 0);"> No cuenta con zonas </span>
+                          </div>
+                        </div>
+                        <ng-template #existe>
+                          <div class="col-md-6">
+                            <label for="floatingInput">Zonas</label>
+                            <div class="form-group input-group form-group-alt" >
+                              <select class="form-select form-select-sm" formControlName="idzona" >
+                                <option  *ngFor="let data of listZonas" value="{{data.zona_id}}" >{{data.zona_zona}} </option>
+                              </select>
+                            </div>
+                          </div>
+                        </ng-template>
+                        <button type="submit"  class="btn btn-outline-primary">Guardar</button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
-
-
-        </div>
-    </div>
-
-
-    </div>
-
-  </div>
-  </div>
-  </div>
-
-
-   <!-- Modal FORMULARIO VIEW-->
-   <div class="modal fade" id="ViewModal" tabindex="-1" aria-labelledby="ViewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="ViewModalLabel"><i class="fa-regular fa-clone"></i> Informacion</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card user-card-full">
-          <div class="row m-l-0 m-r-0">
-              <div class="col-sm-4 bg-c-lite-green user-profile">
-                  <div class="card-block text-center text-white">
-                    <div class="m-b-25" *ngIf="foto">
-                      <img [src]="foto" class="img-radius" alt="User-Profile-Image">
-                    </div>
-                    <h5 class="f-w-600">{{coordComite.nombre}}</h5>
-                    <h5 class="f-w-600">{{coordComite.apellido}}</h5>
-                    <p >{{coordComite.cedula}}</p>
-                      <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                  </div>
-              </div>
-              <div class="col-sm-8" *ngIf="coordComite">
-                  <div class="card-block">
-                      <div class="row">
-
-                              <div class="col-sm-7">
-                                <div *ngIf="coordComite.idcoordzona" >
-                                  <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Coord.Zona <h6 class="text-muted f-w-400">{{coordComite.idcoordzona.nombre}} {{coordComite.idcoordzona.apellido}}</h6></h5>
-                                </div>
-                              </div>
-                              <div class="col-sm-3">
-                                <div *ngIf="coordComite.idzona">
-                                  <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Zona <h6 class="text-muted f-w-400">{{coordComite.idzona.zona}}</h6></h5>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div >
-                                  <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Distrito: <h6 class="text-muted f-w-400">N/A</h6></h5>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div >
-                                  <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Circunsc.: <h6 class="text-muted f-w-400">N/A</h6></h5>
-                                </div>
-                              </div>
-
-                              <div class="col-sm-4" >
-                                <div>
-                                <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Recinto: <h6 class="text-muted f-w-400">N/A</h6></h5>
-                              </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                              <div >
-                                <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Colegio: <h6 class="text-muted f-w-400">N/A</h6></h5>
-                              </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Apodo: <h6 class="text-muted f-w-400">{{coordComite.apodo}}</h6></h5>
-                            </div>
-
-                              <div class="col-sm-4">
-                                <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Telefono: <h6 class="text-muted f-w-400">{{coordComite.telefono}}</h6></h5>
-                              </div>
-
-
-                      </div>
-
-                  </div>
-              </div>
-          </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-
- <!-- Modal FORMULARIO Editar-->
- <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+<!-- Modal FORMULARIO VIEW-->
+<div class="modal fade" id="ViewModal" tabindex="-1" aria-labelledby="ViewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Coordinador</h1>
+        <h1 class="modal-title fs-5" id="ViewModalLabel"><i class="fa-regular fa-clone"></i> Informacion</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
         <div class="card user-card-full">
-        <div class="row m-l-0 m-r-0">
+          <div class="row m-l-0 m-r-0">
             <div class="col-sm-4 bg-c-lite-green user-profile">
-                <div class="card-block text-center text-white">
-                  <div class="m-b-25" *ngIf="foto">
-                    <img [src]="foto" class="img-radius" alt="User-Profile-Image">
+              <div class="card-block text-center text-white">
+                <div class="m-b-25" *ngIf="foto">
+                  <img [src]="foto" class="img-radius" alt="User-Profile-Image">
                 </div>
-                    <h5 class="f-w-600">{{coordComite.nombre}}</h5>
-                    <h5 class="f-w-600">{{coordComite.apellido}}</h5>
-                    <p >{{coordComite.cedula}}</p>
-                    <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                </div>
+                <h5 class="f-w-600">{{coordComite.nombre}}</h5>
+                <h5 class="f-w-600">{{coordComite.apellido}}</h5>
+                <p >{{coordComite.cedula}}</p>
+                  <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+              </div>
             </div>
-            <div class="col-sm-8">
-                <div class="card-block">
-                    <div class="row" >
-                      <form [formGroup]="formEdit" (ngSubmit)="updateData(coordC.id)">
-                        <div class="modal-body">
-                          <div class="row g-3">
-                            <div class="col-md-6">
-                              <label for="floatingInput">Apodo</label>
-                              <div class="form-group input-group form-group-alt">
-                                <input type="text" class="form-control" formControlName="apodo"   name="apodo"  aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-font"></i></span>
-                              </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                  <label for="floatingInput">Telefono</label>
-                                  <div class="form-group input-group form-group-alt">
-                                    <input type="text" class="form-control" formControlName="telefono"  name="telefono" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2">123</span>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label for="floatingInput"> <span  style="color: rgb(255, 0, 0);"> * </span>Coord. de Zonas</label>
-                              <div class="form-group input-group form-group-alt">
-                                <select class="form-select form-select-sm"   formControlName="idcoordzona"  [(ngModel)]="zonaXcoor"  (change)="findZonas()" >
-                                  <option  *ngFor="let data of listCoordZona"   value="{{+data.id}}" >{{data.nombre}} {{data.apellido}} </option>
-                                </select>
-                               </div>
-                            </div>
-
-                            <div class="col-md-6">
-                            <div *ngIf="!zonaXcoor ||  zonaXcoor ==null; else existe">
-                              <span  style="color: rgb(255, 0, 0);"> No cuenta con zonas </span>
-                              </div>
-                            </div>
-
-
-
-                            <ng-template #existe>
-                              <div class="col-md-6">
-                                <label for="floatingInput">Zonas</label>
-                                <div class="form-group input-group form-group-alt" >
-                                  <select class="form-select form-select-sm" formControlName="idzona" >
-                                    <option  *ngFor="let data of listZonas" value="{{data.zona_id}}" >{{data.zona_zona}} </option>
-                                  </select>
-                                </div>
-                              </div>
-                            </ng-template>
-
-
-                          </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Guardar  </button>
-                          </div>
-                      </form>
-
+            <div class="col-sm-8" *ngIf="coordComite">
+              <div class="card-block">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <div *ngIf="coordComite.idcoordzona" >
+                      <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Coord.Zona <h6 class="text-muted f-w-400">{{coordComite.idcoordzona.nombre}} {{coordComite.idcoordzona.apellido}}</h6></h5>
                     </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div *ngIf="coordComite.idzona">
+                      <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Zona <h6 class="text-muted f-w-400">{{coordComite.idzona.zona}}</h6></h5>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div >
+                      <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Distrito: <h6 class="text-muted f-w-400">N/A</h6></h5>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div >
+                      <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Circunsc.: <h6 class="text-muted f-w-400">N/A</h6></h5>
+                    </div>
+                  </div>
+                  <div class="col-sm-4" >
+                    <div>
+                      <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Recinto: <h6 class="text-muted f-w-400">N/A</h6></h5>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div >
+                      <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Colegio: <h6 class="text-muted f-w-400">N/A</h6></h5>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Apodo: <h6 class="text-muted f-w-400">{{coordComite.apodo}}</h6></h5>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Telefono: <h6 class="text-muted f-w-400">{{coordComite.telefono}}</h6></h5>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal FORMULARIO Editar-->
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fa-solid fa-pen-to-square"></i> Editar Coordinador</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card user-card-full">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-4 bg-c-lite-green user-profile">
+              <div class="card-block text-center text-white">
+                <div class="m-b-25" *ngIf="foto">
+                  <img [src]="foto" class="img-radius" alt="User-Profile-Image">
+                </div>
+                  <h5 class="f-w-600">{{coordComite.nombre}}</h5>
+                  <h5 class="f-w-600">{{coordComite.apellido}}</h5>
+                  <p >{{coordComite.cedula}}</p>
+                  <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="card-block">
+                <div class="row" >
+                  <form [formGroup]="formEdit" (ngSubmit)="updateData(coordC.id)">
+                    <div class="modal-body">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="floatingInput">Apodo</label>
+                          <div class="form-group input-group form-group-alt">
+                            <input type="text" class="form-control" formControlName="apodo"   name="apodo"  aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-font"></i></span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="floatingInput">Telefono</label>
+                          <div class="form-group input-group form-group-alt">
+                            <input type="text" class="form-control" formControlName="telefono"  name="telefono" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">123</span>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <label for="floatingInput"> <span  style="color: rgb(255, 0, 0);"> * </span>Coord. de Zonas</label>
+                          <div class="form-group input-group form-group-alt">
+                            <select class="form-select form-select-sm"   formControlName="idcoordzona"  [(ngModel)]="zonaXcoor"  (change)="findZonas()" >
+                              <option  *ngFor="let data of listCoordZona"   value="{{+data.id}}" >{{data.nombre}} {{data.apellido}} </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <label for="floatingInput"> <span  style="color: rgb(255, 0, 0);"> * </span>Localidades</label>
+                          <div class="form-group input-group form-group-alt">
+                            <select class="form-select form-select-sm" formControlName="idzona" >
+                              <option  *ngFor="let data of listZonas" value="{{data.zona_id}}" >{{data.zona_zona}} </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div *ngIf="!zonaXcoor ||  zonaXcoor ==null; else existe">
+                            <span  style="color: rgb(255, 0, 0);"> No cuenta con zonas </span>
+                          </div>
+                        </div>
+                        <ng-template #existe>
+                          <div class="col-md-6">
+                            <label for="floatingInput">Zonas</label>
+                            <div class="form-group input-group form-group-alt" >
+                              <select class="form-select form-select-sm" formControlName="idzona" >
+                                <option  *ngFor="let data of listZonas" value="{{data.zona_id}}" >{{data.zona_zona}} </option>
+                              </select>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Guardar  </button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
