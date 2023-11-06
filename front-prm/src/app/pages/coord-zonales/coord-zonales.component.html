@@ -285,6 +285,7 @@
         </div>
         <form [formGroup]="formEdit" (ngSubmit)="updateData(coordZ.id)">
           <div class="modal-body">
+
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="floatingInput">Apodo</label>
@@ -325,6 +326,49 @@
                     <option  *ngFor="let data of coordM" value ="{{data.id}}" >{{data.nombre}} {{data.apellido}}
                     </option>
                   </select>
+
+
+
+            <div class="card user-card-full">
+            <div class="row m-l-0 m-r-0">
+              <div class="col-sm-4 bg-c-lite-green user-profile">
+                  <div class="card-block text-center text-white">
+                    <div class="m-b-25" *ngIf="foto">
+                        <img [src]="foto" class="img-radius" alt="User-Profile-Image">
+                    </div>
+                    <h5 class="f-w-600">{{coordZonal.nombre}}</h5>
+                    <h5 class="f-w-600">{{coordZonal.apellido}}</h5>
+                    <p >{{coordZonal.cedula}}</p>
+                    <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                  </div>
+              </div>
+                <div class="col-sm-8">
+                    <div class="card-block">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Apodo: <h6 class="text-muted f-w-400">{{coordZonal.apodo}}</h6></h5>
+                              <h5 class="m-b-16 f-w-600"></h5>
+                          </div>
+                          <div class="col-sm-4">
+                            <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Telefono: <h6 class="text-muted f-w-400">{{coordZonal.telefono}}</h6></h5>
+                              <h5 class="m-b-16 f-w-600"></h5>
+                          </div>
+                          <div class="col-sm-4" *ngIf="coordZonal.idmunicipio">
+                            <div class="col-sm-4">
+                              <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Municipio: <h6 class="text-muted f-w-400">{{coordZonal.idmunicipio.municipio}}</h6></h5>
+                                <h5 class="m-b-16 f-w-600"></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Otros: <h6 class="text-muted f-w-400">Sam Disuja</h6></h5>
+                          </div>
+                          <div class="col-sm-6">
+                            <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Otros: <h6 class="text-muted f-w-400">Sam Disuja</h6></h5>
+                          </div>
+                        </div>
+                    </div>
+
                 </div>
               </div>
             </div>
