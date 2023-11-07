@@ -67,7 +67,6 @@ CoordMunicipalModule,
         CoordZonaEntity,
         CoordComiteEntity,
         MilitantesEntity,
-
         CandidaturaEntity,
         ProvinciasEntity, 
         MunicipiosEntity,
