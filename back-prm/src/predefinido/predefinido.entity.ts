@@ -80,6 +80,7 @@ export class ZonasEntity {
 
     @ManyToOne(()=> MunicipiosEntity)
     @JoinColumn({name: 'idmunicipio'})
+    @Column({type: 'int'})
     idmunicipio: MunicipiosEntity;
 }
 
@@ -111,6 +112,7 @@ export class ColegiosEntity {
 
     @ManyToOne(()=> RecintosEntity)
     @JoinColumn({name: 'idrecinto'})
+    @Column({type: 'int'})
     idrecinto: RecintosEntity;
 
   
@@ -128,10 +130,12 @@ export class LocalidadEntity {
 
     @ManyToOne(()=> ZonasEntity)
     @JoinColumn({name: 'idzona'})
+    @Column({type: 'int'})
     idzona: ZonasEntity;
 
     @ManyToOne(()=> MunicipiosEntity)
     @JoinColumn({name: 'idmunicipio'})
+    @Column({type: 'int'})
     idmunicipio: MunicipiosEntity;
   
 }
@@ -147,6 +151,7 @@ export class CircunscripcionesEntity {
 
     @ManyToOne(()=> MunicipiosEntity)
     @JoinColumn({name: 'idmunicipio'})
+    @Column({type: 'int'})
     idmunicipio: MunicipiosEntity;
   
 }

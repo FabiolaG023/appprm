@@ -15,7 +15,7 @@ export class CoordZonaService {
         async all(){
             try {
               return await this.respo.find({
-                relations: {idzona: true,
+                relations: {
                      idcoordmunicipal: true, 
                      idmunicipio: true,
                     idprovincia: true}})  
@@ -39,12 +39,9 @@ export class CoordZonaService {
         async read(id: string){
         const coordZonaFound = await this.respo.findOne({where:{id}, relations: {
             idmunicipio: true, 
-            idcircunscripcion: true, 
-            idcolegio: true,
+           
             idcoordmunicipal: true,
             idprovincia: true,
-            idrecinto: true,
-            idzona: true
         }})
     
             try {
@@ -55,7 +52,7 @@ export class CoordZonaService {
     
             } catch (error) {
             
-                throw new UnauthorizedException(`coordZona:${coordZonaFound.nombre}, no encontrado`)
+                throw error
             }
     
             

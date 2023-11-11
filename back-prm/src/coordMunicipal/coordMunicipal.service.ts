@@ -15,7 +15,7 @@ export class CoordMunicipalService {
   
         async all(){
             try {
-              return await this.respo.find({relations: {idprovincia: true, idmunicipio: true}})  
+              return await this.respo.find({relations: {idprovincia: true, idmunicipio: true, idrecinto: true}})  
             } catch (error) {
               return error  
             }
@@ -34,12 +34,8 @@ export class CoordMunicipalService {
                         return await this.respo.save(coordMuni)   
                     }
                 }
-                   
-                
-               
-               
+
             } catch (error) {
-                console.log(error)
                return error 
             }
          }
@@ -51,9 +47,7 @@ export class CoordMunicipalService {
         relations:{
             idprovincia: true,
             idmunicipio:true,
-            idcircunscripcion: true,
-            idrecinto: true,
-            idcolegio: true
+            idrecinto: true
         }})
             try {
                 if(!coordMunicipalFound){

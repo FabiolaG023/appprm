@@ -27,26 +27,26 @@ export class MilitanteDto {
     @IsNumber() 
     idzona: number;
 
-    @IsOptional()
-    @IsNumber() 
-    idrecinto: number;
 
     @IsOptional()
-    @IsNumber() 
-    iddistrito:number;
+    @IsString()
+    iddistrito:string;
 
     @IsOptional()
     @IsNumber() 
     idcoordcomite: number;
 
     @IsOptional()
-    @IsNumber() 
-    idcolegio: number;
+    @IsString()
+    idcircunscripcion: string;
 
     @IsOptional()
-    @IsNumber() 
-    idlocalidad: number;
+    @IsString()
+    idrecinto: string;
 
+    @IsOptional()
+    @IsString()
+    idcolegio:string;
 
 
 

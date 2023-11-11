@@ -44,9 +44,9 @@
                 <td>{{data.cedula}}</td>
                 <!--<td>{{data.telefono}}</td>-->
                 <td>{{data.idcoordmunicipal.nombre}} {{data.idcoordmunicipal.apellido}}</td>
-                <td>{{data.idzona.zona}}</td>
+                <td>{{data.idzona}}</td>
                 <td>{{data.idmunicipio.municipio}}</td>
-                <td>{{data.idlocalidad.nombre}}</td>
+                <td>{{data.idlocalidad}}</td>
                 <td>
                   <div class="btn-group me-2" role="group" aria-label="Second group">
                     <span class="btn-inner">
@@ -157,7 +157,7 @@
                             <label for="floatingInput">Zona</label>
                             <div class="form-group input-group form-group-alt">
                               <select class="form-select form-select-sm" formControlName="idzona"   name="idzona" >
-                                <option  *ngFor="let data of allZonas" [ngValue]="+data.id" >{{data.zona}}
+                                <option  *ngFor="let data of allZonas" value={{data.zona}} >{{data.zona}}
                                 </option>
                               </select>
                             </div>
@@ -166,7 +166,7 @@
                             <label for="floatingInput">Localidad</label>
                             <div class="form-group input-group form-group-alt">
                               <select class="form-select form-select-sm" formControlName="idlocalidad"   name="idlocalidad" >
-                                <option  *ngFor="let data of allZonas" [ngValue]="+data.id" >{{data.zona}}
+                                <option  *ngFor="let data of allLocalidad" value={{data.nombre}} >{{data.nombre}}
                                 </option>
                               </select>
                             </div>
@@ -293,7 +293,7 @@
                 <label for="floatingInput">Zona</label>
                 <div class="form-group input-group form-group-alt">
                   <select class="form-select form-select-sm" formControlName="idzona"   name="idzona"   aria-label=".form-select-sm example">
-                    <option  *ngFor="let data of allZonas" value ="{{data.id}}" >{{data.zona}}
+                    <option  *ngFor="let data of allZonas" value ="{{data.zona}}" >{{data.zona}}
                     </option>
                   </select>
                 </div>
@@ -302,7 +302,7 @@
                 <label for="floatingInput">Localidad</label>
                 <div class="form-group input-group form-group-alt">
                   <select class="form-select form-select-sm" formControlName="idlocalidad"   name="idlocalidad"   aria-label=".form-select-sm example">
-                    <option  *ngFor="let data of allLocalidad" value ="{{data.id}}" >{{data.nombre}}
+                    <option  *ngFor="let data of allLocalidad" value ="{{data.nombre}}" >{{data.nombre}}
                     </option>
                   </select>
                 </div>
@@ -347,14 +347,7 @@
                                 <h5 class="m-b-16 f-w-600"></h5>
                             </div>
                         </div>
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Otros: <h6 class="text-muted f-w-400">Sam Disuja</h6></h5>
-                          </div>
-                          <div class="col-sm-6">
-                            <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Otros: <h6 class="text-muted f-w-400">Sam Disuja</h6></h5>
-                          </div>
-                        </div>
+                       
                     </div>
                   </div>
                 </div>

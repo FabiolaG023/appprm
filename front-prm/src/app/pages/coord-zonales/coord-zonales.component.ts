@@ -89,7 +89,7 @@ constructor(
     apodo:(''),
     telefono:(''),
     idcoordmunicipal:(null),
-    idzona:(null),
+    idzona:(''),
     idlocalidad: ('')
    })
 
@@ -180,27 +180,12 @@ constructor(
       return this.listCedula.includes(elemento);
         }
 
-        // VERIFICA SI LA CEDULA EXISTE EN LA LISTA DE COORDINADORES MUNICIPALES
-        verificarCoordMunicipal(elemento: any): boolean {
-          let element: any=[]
-
-          for (let i = 0; i < this.coordM .length; i++) {
-            element = this.coordM [i].cedula;
-            this.listCoordM.push(element)
-          }
-
-          if(elemento == element){
-            return this.listCoordM.includes(elemento);
-          }
-          return this.listCoordM.includes(elemento);
-            }
 
 
  addData(data: any){
 
 // si la cedula existe en los coordinadores de zona o existe en los coordinadores de muniicpales o si no existe en la API de la junta
-    if (this.verificarCoordMunicipal(data.Cedula)==true ||
-    this.verificarCedula(data.Cedula)==true ||
+    if (this.verificarCedula(data.Cedula)==true ||
      data.existe == false) {
       Swal.fire({
         icon: 'error',
@@ -219,9 +204,9 @@ constructor(
         idprovincia: data.IdProvincia,
         idmunicipio: data.IdMunicipio ,
         cedula:  data.Cedula,
-     //   idcircunscripcion: data.CodigoCircunscripcion,
-      //  idrecinto: data.CodigoRecinto,
-       // idcolegio: data.colegio,
+        idcircunscripcion: data.CodigoCircunscripcion,
+        idrecinto: data.CodigoRecinto,
+        idcolegio: data.colegio,
         foto: this.imageSrc,
 
       }
@@ -232,19 +217,23 @@ constructor(
   }
 
   updateData(id: number){
-    this.service.updateCoordZona(id, this.formEdit.value).subscribe((res:any)=> {window.location.reload()})
+    this.service.updateCoordZona(id, this.formEdit.value).subscribe(()=> {window.location.reload()})
       }
 
   selecctData(id: number){
     this.service.readCoordZona(id).subscribe((res:any)=>{
-      this.coordZonal = res
+      this.coordZonal = res,
+      console.log(res)
       this.foto = res.foto
       this.formEdit.patchValue({
         apodo: res['apodo'],
         telefono: res['telefono'],
-        idzona: res['idzona'].id,
-        idcoordmunicipal: res['idcoordmunicipal'].id,
-        idlocalidad: res['idlocalidad'].id
+        idzona: res['idzona'],
+        idcoordmunicipal: res['idcoordmunicipal'],
+        idlocalidad: res['idlocalidad'],
+        idcircunscripcion: res['idcircunscripcion'],
+        idrecinto: res['idrecinto'],
+        idcolegio: res['idcolegio']
       })
       this.coordZ = res
     })
@@ -262,7 +251,7 @@ constructor(
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.deleteCoordZona(id).subscribe((res: any)=>{
+        this.service.deleteCoordZona(id).subscribe(()=>{
           Swal.fire(
             'Eliminado!',
             'Este Coordinador de Zona ha sido eliminado!',

@@ -29,33 +29,31 @@ export class CoordZonaEntity {
     @Column({type: 'text'})
     foto: string;
 
-    @ManyToOne(()=> CircunscripcionesEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'idcircunscripcion', referencedColumnName: 'id', foreignKeyConstraintName: "coordZonales-circunscripcion"})
-    @Column({ type: 'int'})
-    idcircunscripcion: CircunscripcionesEntity;
+    @Column({ type: 'varchar'})
+    idcircunscripcion: string;
 
-    @ManyToOne(()=> RecintosEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'idrecinto', referencedColumnName: 'id',foreignKeyConstraintName: "coordZonales-recinto"})
-    @Column({ type: 'int',nullable: true})
-    idrecinto: RecintosEntity;
+    @Column({ type: 'varchar'})
+    idrecinto: string;
 
 
-    @ManyToOne(()=> ColegiosEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'idcolegio', referencedColumnName: 'id', foreignKeyConstraintName: "coordZonales-colegios"})
-    @Column({ type: 'int'})
-    idcolegio: ColegiosEntity;
+    @Column({ type: 'varchar'})
+    idcolegio: string;
 
 
-    @ManyToOne(()=> ZonasEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'idzona', referencedColumnName: 'id', foreignKeyConstraintName: "coordZonales-zonas"})
-    @Column({ type: 'int'})
-    idzona: ZonasEntity;
+    @Column({ type: 'varchar'})
+    idlocalidad: string;
+
+
+    @Column({ type: 'varchar', nullable: true})
+    idzona: string;
   
 
     @ManyToOne(()=> CoordMunicipalEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idcoordmunicipal', referencedColumnName: 'id', foreignKeyConstraintName: "coordZonales-coordmunicipal"})
     @Column({ type: 'int'})
     idcoordmunicipal: CoordMunicipalEntity;
+
+ 
 
 
     @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
@@ -70,10 +68,7 @@ export class CoordZonaEntity {
     idmunicipio: MunicipiosEntity;
 
 
-    @ManyToOne(()=> LocalidadEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
-    @JoinColumn({name: 'idlocalidad', referencedColumnName: 'id', foreignKeyConstraintName: "coordZonales-localidad"})
-    @Column({ type: 'int'})
-    idlocalidad: LocalidadEntity;
+   
 
 
 

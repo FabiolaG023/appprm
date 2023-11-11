@@ -64,8 +64,8 @@ constructor(
   private predefinido: PredefinidosService ){
 
     this.formEdit = this.fb.group({
-      apodo: new FormControl(''),
-      telefono: new FormControl(''),
+      apodo: (''),
+      telefono: (''),
     })
 
     // INPUTS EN MAYUSCULA
@@ -170,9 +170,9 @@ constructor(
           idprovincia: data.IdProvincia,
           idmunicipio: data.IdMunicipio ,
           cedula:  data.Cedula,
-         // idcircunscripcion: data.CodigoCircunscripcion,
+          idcircunscripcion: data.CodigoCircunscripcion,
           idrecinto: data.CodigoRecinto,
-         // idcolegio: data.colegio,
+          idcolegio: data.colegio,
           foto: this.imageSrc,
         }
       // combinacion de los datos del api y los formulario
@@ -185,21 +185,26 @@ constructor(
   }
 
   updateData(id: number){
-    this.service.updateCoordMuni(id, this.formEdit.value).subscribe((res:any)=> {
+    this.service.updateCoordMuni(id, this.formEdit.value).subscribe(()=> {
       window.location.reload()
     })
   }
 
   selecctData(id: number){
     this.service.getCoordMuni(id).subscribe((res:any)=>{
-  //   console.log(res)
+    console.log(res)
      this.coordMuni = res
      this.foto = res.foto
-   //  console.log(this.foto)
 
       this.formEdit.patchValue({
         apodo: res['apodo'],
-        telefono: res['telefono']
+        telefono: res['telefono'],
+        idcircunscripcion: res['idcircunscripcion'],
+        idcolegio: res['idcolegio'],
+        idrecinto: res['idrecinto'].id,
+        iddistrito: res['iddistrito']
+
+
       })
       this.coordM = res
     })
@@ -218,13 +223,14 @@ deleteData(id: number){
   }).then((result) => {
     if (result.isConfirmed) {
       this.service.deleteCoordMuni(id).subscribe((res: any)=>{
+       
         Swal.fire(
           'Eliminado!',
           'Este Coordinador Municipal ha sido eliminado!',
           'success'
         )
 
-        window.location.reload()
+       window.location.reload()
 
       })
 

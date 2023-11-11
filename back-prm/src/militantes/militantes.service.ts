@@ -20,12 +20,7 @@ export class MilitantesService{
     return this.respo.find
     ({relations:{
         idcoordcomite: true,
-        iddistrito: true,
-      //  idcolegio: true,
-        idlocalidad: true,
-      //  idcircunscripcion: true,
-       // idrecinto: true,
-        idzona: true
+
     }})
         }
 
@@ -52,12 +47,6 @@ export class MilitantesService{
         where: {id},
         relations:{
             idcoordcomite: true,
-            iddistrito: true,
-          //  idcolegio: true,
-            idlocalidad: true,
-          //  idcircunscripcion: true,
-           // idrecinto: true,
-            idzona: true
         }
     })   
     try {

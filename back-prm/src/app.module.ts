@@ -57,7 +57,7 @@ CoordMunicipalModule,
       username: 'root',
       password: 'pass354368',
       autoLoadEntities: true,
-      synchronize: true,
+   //   synchronize: true,
       entities: [
         UserEntity, 
         LiderEntity, 

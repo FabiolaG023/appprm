@@ -16,9 +16,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
           <a class="py-0 nav-link d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#LiderModal">
-            <div *ngIf="imageSrc">
+            <div >
+            </div>
+            <div *ngIf="imageSrc; else imageDefault">
               <img [src]="imageSrc"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
             </div>
+            
+            <ng-template #imageDefault>
+              <img  src="../../../assets/images/Sin título.png"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
+            </ng-template>
+
             <div class="caption ms-3 d-none d-md-block" *ngIf="statusRes == 302">
               <h6 class="mb-0 caption-title">{{lider.idcandidatura.nombre}}</h6>
               <p class="mb-0 caption-sub-title">{{lider.nombre}}</p>
@@ -157,7 +164,7 @@
   </div>
 </div>
 
-<!--MUNE HORIZONTAL-->
+<!--MENU HORIZONTAL-->
 <div class="navbar dual-horizontal ">
   <nav  class=" mobile-offcanvas nav navbar navbar-expand-xl hover-nav horizontal-nav mx-md-auto">
     <div class="container-fluid">

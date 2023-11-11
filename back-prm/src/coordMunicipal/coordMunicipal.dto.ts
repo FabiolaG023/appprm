@@ -34,16 +34,17 @@ export class CoordmunicipalDto {
     @IsNumber()
     idmunicipio: number;
 
-    @IsNotEmpty()
-    idcircunscripcion: number;
+    @IsOptional()
+    @IsString()
+    idcircunscripcion: string;
 
-    @IsNotEmpty()
-    @IsNumber()
-    idrecinto: number;
+    @IsOptional()
+    @IsString()
+    idrecinto: string;
 
-    @IsNotEmpty()
-    @IsNumber()
-    idcolegio: number
+    @IsOptional()
+    @IsString()
+    idcolegio:string;
 
 }
 
