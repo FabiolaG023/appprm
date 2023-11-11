@@ -62,7 +62,7 @@ CoordMunicipalModule,
         UserEntity, 
         LiderEntity, 
        
-         
+        ColegiosEntity,
         CoordMunicipalEntity,
         CoordZonaEntity,
         CoordComiteEntity,

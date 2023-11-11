@@ -4,7 +4,7 @@ import { UserEntity } from 'src/user/user.entity';
 
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('Comite')
+@Entity('comite')
 export class ComiteEntity {
     @PrimaryGeneratedColumn() id:string;
 
@@ -13,39 +13,39 @@ export class ComiteEntity {
     fecha: Date;
 
     
-    @ManyToOne(()=> ProvinciasEntity)
-    @JoinColumn({name: 'idprovincia'})
+    @ManyToOne(()=> ProvinciasEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idprovincia', referencedColumnName: 'id', foreignKeyConstraintName: "comite-provincia"})
     @Column({ type: 'int'})
     idprovincia: ProvinciasEntity;
 
 
-    @ManyToOne(()=> MunicipiosEntity)
-    @JoinColumn({name: 'idmunicipio'})
+    @ManyToOne(()=> MunicipiosEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "comite-municipio"})
     @Column({ type: 'int'})
     idmunicipio: MunicipiosEntity;
 
     
-    @ManyToOne(()=> LocalidadEntity)
-    @JoinColumn({name: 'idlocalidad'})
+    @ManyToOne(()=> LocalidadEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idlocalidad', referencedColumnName: 'id', foreignKeyConstraintName: "comite-localidad"})
     @Column({ type: 'int'})
     idlocalidad: LocalidadEntity;
 
 
-    @ManyToOne(()=> ZonasEntity)
-    @JoinColumn({name: 'idzona'})
+    @ManyToOne(()=> ZonasEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idzona', referencedColumnName: 'id', foreignKeyConstraintName: "comite-zonas"})
     @Column({ type: 'int'})
     idzona: ZonasEntity;
 
 
     
-    @ManyToOne(()=> UserEntity)
-    @JoinColumn({name: 'idusuario'})
+    @ManyToOne(()=> UserEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idusuario', referencedColumnName: 'id', foreignKeyConstraintName: "comite-usuario"})
     @Column({ type: 'int'})
     idusuario: UserEntity;
 
 
-    @ManyToOne(()=> CoordComiteEntity)
-    @JoinColumn({name: 'idcoorcomite'})
+    @ManyToOne(()=> CoordComiteEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+    @JoinColumn({name: 'idcoorcomite', referencedColumnName: 'id', foreignKeyConstraintName: "comite-coordcomite"})
     @Column({ type: 'int'})
     idcoorcomite: CoordComiteEntity;
 

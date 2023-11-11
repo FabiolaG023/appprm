@@ -180,16 +180,6 @@
                               </select>
                               </div>
                           </div>
-
-                          <div class="col-md-6">
-                            <label for="floatingInput"> <span  style="color: rgb(255, 0, 0);"> * </span>xxx Coordinador Municipal</label>
-                            <div class="form-group input-group form-group-alt">
-                              <select class="form-select form-select-sm" formControlName="idcoordmunicipal"  name="idcoordmunicipal">
-                                <option *ngFor="let data of coordM"  [ngValue]="+data.id" >{{data.nombre}} {{data.apellido}}
-                                </option>
-                              </select>
-                              </div>
-                          </div>
                           <button type="submit" [disabled]="formCreate.invalid"  class="btn btn-outline-primary"> Guardar</button>
                         </form>
                       </div>

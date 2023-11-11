@@ -69,7 +69,6 @@ async login(user: any){
 }
 
 async singup(data:any){
-    const {usuario, password}= data
  
     const userFound = this.respo.findOne({where:{usuario: data.usuario}})
  

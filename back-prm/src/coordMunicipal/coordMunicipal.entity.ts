@@ -24,32 +24,32 @@ export class CoordMunicipalEntity {
     @Column({type: 'text'})
     foto: string;
 
-    @ManyToOne(()=> CircunscripcionesEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @ManyToOne(()=> CircunscripcionesEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idcircunscripcion', referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-circunscripcion"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idcircunscripcion: CircunscripcionesEntity;
 
-    @ManyToOne(()=> RecintosEntity, { onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @ManyToOne(()=> RecintosEntity, { onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idrecinto', referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-recinto"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idrecinto: RecintosEntity;
 
 
-    @ManyToOne(()=> ColegiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @ManyToOne(()=> ColegiosEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idcolegio',referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-colegio"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idcolegio: ColegiosEntity;
 
 
     @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idprovincia',referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-provincia"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idprovincia: ProvinciasEntity;
 
 
-    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-municipio"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idmunicipio: MunicipiosEntity;
 
 

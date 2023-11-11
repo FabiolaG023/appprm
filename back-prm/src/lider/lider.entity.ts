@@ -14,17 +14,17 @@ export class LiderEntity {
 
     @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idprovincia', referencedColumnName: 'id', foreignKeyConstraintName: "lider-provincia"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idprovincia: ProvinciasEntity;
 
 
-    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @ManyToOne(()=> MunicipiosEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "lider-municipio"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idmunicipio: MunicipiosEntity;
 
-    @ManyToOne(()=> CandidaturaEntity, {onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+    @ManyToOne(()=> CandidaturaEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idcandidatura', referencedColumnName: 'id', foreignKeyConstraintName: "lider-candidatura"})
-    @Column({ type: 'int', nullable: true})
+    @Column({ type: 'int'})
     idcandidatura: CandidaturaEntity;
 }

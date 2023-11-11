@@ -26,15 +26,15 @@ export class CoordComiteEntity {
      @Column({length: 100})
      apodo: string;
  
-     @ManyToOne(()=> ZonasEntity,{onDelete: 'SET NULL', onUpdate: 'CASCADE'})
+     @ManyToOne(()=> ZonasEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
      @JoinColumn({name: 'idzona', referencedColumnName: 'id', foreignKeyConstraintName: "coordComite-zonas"})
-     @Column({ type: 'int', nullable: true})
+     @Column({ type: 'int'})
      idzona: ZonasEntity;
    
      
  
      @ManyToOne(()=> CoordZonaEntity)
-     @JoinColumn({name: 'idcoordzona', referencedColumnName: 'id'})
+     @JoinColumn({name: 'idcoordzona', referencedColumnName: 'id', foreignKeyConstraintName: "coordComite-coordzonales"})
      @Column({ type: 'int'})
      idcoordzona: CoordZonaEntity;
  

@@ -58,9 +58,7 @@ export class UserService {
             return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND)
          }else{ return userFound}
           
-
         } catch (error) {
-        
            throw new UnauthorizedException(`Usuario:${userFound.usuario}, no encontrado`)
         }
 
