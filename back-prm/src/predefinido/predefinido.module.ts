@@ -11,7 +11,8 @@ import {
   ColegiosEntity, 
   LocalidadEntity,  
   ZonasEntity, 
-  CircunscripcionesEntity } from './predefinido.entity';
+  CircunscripcionesEntity, 
+  ConfigSystemEntity} from './predefinido.entity';
 import { PredefinidoService } from './predefinido.service';
 
 
@@ -28,7 +29,8 @@ import { PredefinidoService } from './predefinido.service';
     ColegiosEntity,
     LocalidadEntity,
     CircunscripcionesEntity,
-    ZonasEntity
+    ZonasEntity,
+    ConfigSystemEntity
   
   ])],
   providers: [ PredefinidoService],

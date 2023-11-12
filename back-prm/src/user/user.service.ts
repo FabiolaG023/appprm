@@ -31,6 +31,19 @@ export class UserService {
     private readonly respo: Repository<UserEntity>,
    ) {}
 
+   
+   async createDefaultUser(){
+      const existingUser = await this.respo.findOne({where: {usuario: 'master'}})
+      if (!existingUser) {
+       const newUser = new UserEntity()
+       newUser.nombre =  "master",
+       newUser.usuario= "master",
+       newUser.password="12345",
+       newUser.role = "admin"
+       await this.respo.save(newUser)
+      }
+      return 
+     }
     
 
    async all(){
@@ -55,8 +68,16 @@ export class UserService {
 
         try {
          if(!userFound){
-            return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND)
-         }else{ return userFound}
+            throw new HttpException({
+               status: HttpStatus.NOT_FOUND,
+               error: 'No existe',
+               origin: '/read user'
+              }, HttpStatus.NOT_FOUND);
+          //  return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND)
+         }else{ 
+            
+            return userFound
+         }
           
         } catch (error) {
            throw new UnauthorizedException(`Usuario:${userFound.usuario}, no encontrado`)

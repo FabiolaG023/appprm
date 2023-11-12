@@ -20,7 +20,7 @@ import {DataTablesModule} from 'angular-datatables';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
   ],
   exports:[
     HeaderComponent,

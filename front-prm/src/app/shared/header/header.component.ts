@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   lider: any
   statusRes: any
-
+  config: any
+  configStautus: any
 
   user: any =[]
   token: any = {} ;
@@ -30,13 +31,19 @@ export class HeaderComponent implements OnInit {
     private serviceLider: LiderService,
     private auth: AuthService,
     private fb: FormBuilder,
-    private predefinido: PredefinidosService){
+    private predefinido: PredefinidosService
+    ){
 
     }
 
 
 
   ngOnInit(): void {
+    this.predefinido.readConfig(1).subscribe((res:any)=>{
+      this.configStautus = res.status
+      console.log(res)
+    })
+
     this.serviceLider.selectLider(1).subscribe((res: any)=>{
       this.statusRes = res.status
     //  console.log(res)

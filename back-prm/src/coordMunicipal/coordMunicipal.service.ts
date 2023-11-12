@@ -15,7 +15,7 @@ export class CoordMunicipalService {
   
         async all(){
             try {
-              return await this.respo.find({relations: {idprovincia: true, idmunicipio: true, idrecinto: true}})  
+              return await this.respo.find({relations: { idrecinto: true}})  
             } catch (error) {
               return error  
             }
@@ -45,8 +45,7 @@ export class CoordMunicipalService {
       const coordMunicipalFound = await this.respo.findOne({
         where:{id}, 
         relations:{
-            idprovincia: true,
-            idmunicipio:true,
+       
             idrecinto: true
         }})
             try {

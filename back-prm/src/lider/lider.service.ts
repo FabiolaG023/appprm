@@ -21,7 +21,7 @@ export class LiderService {
 
     async all(){
         try {
-          return await this.respo.find({where: {}, relations: {idcandidatura: true, idmunicipio: true, idprovincia: true}})  
+          return await this.respo.find({where: {}, relations: {idcandidatura: true}})  
         } catch (error) {
           return error  
         }
@@ -64,7 +64,7 @@ export class LiderService {
      }
 
     async read(id: string){
-        const data = await this.respo.findOne({where:{id}, relations: {idcandidatura: true, idmunicipio: true, idprovincia: true}})
+        const data = await this.respo.findOne({where:{id}, relations: {idcandidatura: true}})
       //  console.log(data)
        const status =  HttpStatus.FOUND
 

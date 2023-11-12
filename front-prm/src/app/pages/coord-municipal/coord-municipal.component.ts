@@ -86,6 +86,7 @@ constructor(
 }
 
   ngOnInit(): void {
+    console.log(this.cedula)
   this.predefinido.getProvincias().subscribe((res:any)=>{this.provincias = res})
    this.service.allCoordMuni().subscribe((res: any)=>{
     this.list = res;
@@ -202,7 +203,7 @@ constructor(
         idcircunscripcion: res['idcircunscripcion'],
         idcolegio: res['idcolegio'],
         idrecinto: res['idrecinto'].id,
-        iddistrito: res['iddistrito']
+       // iddistrito: res['iddistrito']
 
 
       })
@@ -223,7 +224,7 @@ deleteData(id: number){
   }).then((result) => {
     if (result.isConfirmed) {
       this.service.deleteCoordMuni(id).subscribe((res: any)=>{
-       
+
         Swal.fire(
           'Eliminado!',
           'Este Coordinador Municipal ha sido eliminado!',

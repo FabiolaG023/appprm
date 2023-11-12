@@ -36,24 +36,6 @@
                                 <input type="text" class="form-control" formControlName="password"   name="password" >
                              </div>
                           </div>
-                          <div class="col-lg-6">
-                             <div class="form-group">
-                                <label for="password" class="form-label">Provincia</label>
-                                <select class="form-select form-select-sm" formControlName="idprovincia" [(ngModel)]="selectedProvince" (change)="getMunicipiosXProvincia()"  aria-label=".form-select-sm example">
-                                  <option  *ngFor="let provincia of provincias" value ="{{provincia.id}}" >{{provincia.descripcion}}
-                                  </option>
-                                </select>
-                             </div>
-                          </div>
-                          <div class="col-lg-6">
-                             <div class="form-group">
-                                <label for="confirm-password" class="form-label">Municipio</label>
-                                <select class="form-select form-select-sm" formControlName="idmunicipio" aria-label=".form-select-sm example">
-                                  <option  *ngFor="let municipio of municipios" value="{{municipio.id}}">{{municipio.municipio}}</option>
-
-                                 </select>
-                                </div>
-                          </div>
 
                           <div class="row">
                             <div class="col-8 col-sm-6">
@@ -88,3 +70,4 @@
      </div>
 
 </section>
+

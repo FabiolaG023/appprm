@@ -23,7 +23,7 @@ export class CoordComiteService {
         
         async all(){
             try {
-              return await this.respo.find({relations:{idcoordzona: true, idzona: true}})  
+              return await this.respo.find({relations:{idcoordzona: true}})  
             } catch (error) {
               return error  
             }
@@ -57,7 +57,7 @@ export class CoordComiteService {
     
     
         async read(id: string){
-        const coordComiteFound = await this.respo.findOne({where:{id}, relations:{idcoordzona: true, idzona: true}})
+        const coordComiteFound = await this.respo.findOne({where:{id}, relations:{idcoordzona: true}})
     
             try {
                 if(!coordComiteFound){

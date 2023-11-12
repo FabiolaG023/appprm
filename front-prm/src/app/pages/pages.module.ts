@@ -23,6 +23,7 @@ import { ColegioComponent } from './configuracion/colegio/colegio.component';
 import { RecintoComponent } from './configuracion/recinto/recinto.component';
 import { CircunscripcionComponent } from './configuracion/circunscripcion/circunscripcion.component';
 import { AuthModule } from '../auth/auth.module';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 
 @NgModule({
@@ -41,6 +42,8 @@ import { AuthModule } from '../auth/auth.module';
     ColegioComponent,
     RecintoComponent,
     CircunscripcionComponent,
+    ConfiguracionComponent,
+
   ],
 
 
@@ -55,6 +58,6 @@ import { AuthModule } from '../auth/auth.module';
     AuthModule,
 
   ],
-   exports: [HomeComponent, ReactiveFormsModule,]
+   exports: [HomeComponent, ReactiveFormsModule, ConfiguracionComponent ]
 })
 export class PagesModule { }

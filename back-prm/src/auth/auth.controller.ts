@@ -26,23 +26,36 @@ export class AuthController {
       error: 'Credenciales Invalidas',
       origin: '/login'
      }, HttpStatus.FORBIDDEN);
-
     }
     return await this.service.generateAccessToken(usuario);
   }
 
 
 
-@Post('/singup')
-async singup(@Body() data: UserDto){
+@Post('singup')
+async singup(@Body() data: any){
   try {
    return await this.service.singup(data);
+   
   } catch (error) {
     return  error 
   }
-
-
 }
+
+@Post('config/add')
+  async config(@Body() data: any){
+    try {
+      return await this.service.singup(data);
+      
+     } catch (error) {
+       return  error 
+     } 
+  }
+
+
+
+
+
 
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth() 

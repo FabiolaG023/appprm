@@ -10,12 +10,13 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
 import { UserEntity } from 'src/user/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigSystemEntity, MunicipiosEntity, ProvinciasEntity } from 'src/predefinido/predefinido.entity';
 
 @Module({
   imports: [
     ConfigModule,
     UserModule, 
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, MunicipiosEntity, ProvinciasEntity, ConfigSystemEntity]),
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
       secret: appConstants.jwtSecret,

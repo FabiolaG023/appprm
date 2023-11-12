@@ -12,7 +12,8 @@ import {
   ProvinciasEntity, 
   RecintosEntity, 
   ZonasEntity, 
-  LocalidadEntity 
+  LocalidadEntity, 
+  ConfigSystemEntity
 } from 'src/predefinido/predefinido.entity';
 
 @Module({
@@ -25,7 +26,8 @@ import {
      CircunscripcionesEntity,
      RecintosEntity,
      ColegiosEntity,
-     LocalidadEntity
+     LocalidadEntity,
+     ConfigSystemEntity
   ])],
   providers: [CoordZonaService],
   controllers: [CoordZonaController]

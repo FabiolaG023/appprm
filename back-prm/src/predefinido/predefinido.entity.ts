@@ -1,5 +1,21 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany} from "typeorm";
+
+
+@Entity('configuracion')
+export class ConfigSystemEntity{
+    @PrimaryGeneratedColumn() 
+    id:string;
+
+    @Column({type: 'varchar',length: 100})
+    Provincia: string;
+
+    @Column({type: 'varchar',length: 100})
+    Municipio: string;
+
+}
+
+
 
 @Entity('provincias')
 export class ProvinciasEntity {
@@ -8,6 +24,9 @@ export class ProvinciasEntity {
 
     @Column({type: 'varchar',length: 100})
     descripcion: string;
+/* 
+    @OneToMany(() => MunicipiosEntity, municipio => municipio.idprovincia)
+     municipios: MunicipiosEntity[]; */
 
 }
 
@@ -16,13 +35,22 @@ export class MunicipiosEntity {
     @PrimaryGeneratedColumn() 
     id:string;
 
-    @Column({type: 'varchar',length: 100})
+    @Column({type: 'varchar',length: 100, nullable: false})
     municipio: string;
+/* 
+    @Column({type: 'varchar',length: 100, nullable: false})
+    idprovincia: string; */
 
-
-    @ManyToOne(()=> ProvinciasEntity)
+    @ManyToOne(() => ProvinciasEntity)
     @JoinColumn({name: 'idprovincia', referencedColumnName: 'id' })
-    idprovincia: ProvinciasEntity;
+    @Column({type: 'int', nullable: false})
+     idprovincia: ProvinciasEntity; 
+
+
+  /*   @ManyToOne(()=> ProvinciasEntity, )
+    @JoinColumn({name: 'idprovincia', referencedColumnName: 'id' })
+    @Column({type: 'int', nullable: false})
+    idprovincia: ProvinciasEntity; */
 
 }
 
@@ -39,6 +67,8 @@ export class CandidaturaEntity {
 
 }
 
+
+
 @Entity('distritos')
 export class DistritosEntity {
 
@@ -48,10 +78,13 @@ export class DistritosEntity {
     @Column({type: 'text'})
     distrito: string;
 
+
+    @Column({type: 'varchar'})
+    idmunicipio: string;
     
-    @ManyToOne(()=> MunicipiosEntity)
+   /*  @ManyToOne(()=> MunicipiosEntity)
     @JoinColumn({name: 'idmunicipio'})
-    idmunicipio: MunicipiosEntity;
+    idmunicipio: MunicipiosEntity; */
 
 }
 
@@ -78,10 +111,9 @@ export class ZonasEntity {
     @Column({type: 'varchar', unique: true})
     zona: string;
 
-    @ManyToOne(()=> MunicipiosEntity)
-    @JoinColumn({name: 'idmunicipio'})
-    @Column({type: 'int'})
-    idmunicipio: MunicipiosEntity;
+
+    @Column({type: 'varchar'})
+    idmunicipio: string;
 }
 
 
@@ -133,10 +165,8 @@ export class LocalidadEntity {
     @Column({type: 'int'})
     idzona: ZonasEntity;
 
-    @ManyToOne(()=> MunicipiosEntity)
-    @JoinColumn({name: 'idmunicipio'})
-    @Column({type: 'int'})
-    idmunicipio: MunicipiosEntity;
+   @Column({type: 'varchar'})
+    idmunicipio: string;
   
 }
 
@@ -149,9 +179,7 @@ export class CircunscripcionesEntity {
     @Column({type: 'text'})
     numero: string;
 
-    @ManyToOne(()=> MunicipiosEntity)
-    @JoinColumn({name: 'idmunicipio'})
-    @Column({type: 'int'})
-    idmunicipio: MunicipiosEntity;
+    @Column({type: 'varchar'})
+    idmunicipio: string;
   
 }

@@ -1,5 +1,5 @@
 import { CoordMunicipalEntity } from "src/coordMunicipal/coordMunicipal.entity";
-import { CircunscripcionesEntity, ColegiosEntity, LocalidadEntity, MunicipiosEntity, ProvinciasEntity, RecintosEntity, ZonasEntity } from "src/predefinido/predefinido.entity";
+import { CircunscripcionesEntity, ColegiosEntity, ConfigSystemEntity, LocalidadEntity, MunicipiosEntity, ProvinciasEntity, RecintosEntity, ZonasEntity } from "src/predefinido/predefinido.entity";
 
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from "typeorm";
 
@@ -53,10 +53,13 @@ export class CoordZonaEntity {
     @Column({ type: 'int'})
     idcoordmunicipal: CoordMunicipalEntity;
 
- 
+    @ManyToOne(()=> ConfigSystemEntity)
+    @JoinColumn({name: 'config', referencedColumnName: 'id', foreignKeyConstraintName: "coordzona-config"})
+    @Column({ type: 'int'})
+    config: ConfigSystemEntity; 
 
 
-    @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+  /*   @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idprovincia', referencedColumnName: 'id', foreignKeyConstraintName: "coordZonales-provincias"})
     @Column({ type: 'int'})
     idprovincia: ProvinciasEntity;
@@ -67,7 +70,7 @@ export class CoordZonaEntity {
     @Column({ type: 'int',nullable: true})
     idmunicipio: MunicipiosEntity;
 
-
+ */
    
 
 

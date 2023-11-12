@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { AppService } from './services/app.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
 
 
 
+
     ngOnInit() {
+
+
 
     }
 

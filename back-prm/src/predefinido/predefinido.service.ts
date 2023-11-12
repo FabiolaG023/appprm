@@ -1,7 +1,7 @@
 
 import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProvinciasEntity, MunicipiosEntity, CandidaturaEntity, DistritosEntity, AbcsEntity,  ZonasEntity, ColegiosEntity, RecintosEntity, CircunscripcionesEntity, LocalidadEntity } from './predefinido.entity';
+import { ProvinciasEntity, MunicipiosEntity, CandidaturaEntity, DistritosEntity, AbcsEntity,  ZonasEntity, ColegiosEntity, RecintosEntity, CircunscripcionesEntity, LocalidadEntity, ConfigSystemEntity } from './predefinido.entity';
 import { Repository, createQueryBuilder } from 'typeorm';
 
 
@@ -41,9 +41,45 @@ export class PredefinidoService {
          private readonly  circuns: Repository<CircunscripcionesEntity>,
 
          @InjectRepository(LocalidadEntity)
-         private readonly  localidad: Repository<LocalidadEntity>
+         private readonly  localidad: Repository<LocalidadEntity>,
+         
+         @InjectRepository(ConfigSystemEntity)
+         private readonly respoConfig: Repository<ConfigSystemEntity>,
 
         ) {}
+
+
+        async configAdd(data: any){
+          const conf = await this.respoConfig.find()
+          try {
+              if (!conf) {
+                  const newConfig = this.respoConfig.create(data)
+                  return this.respoConfig.save(newConfig) 
+              }
+          } catch (error) {
+              throw error
+          }
+          
+          }
+          
+          async configread(id: any){
+              const conf = await this.respoConfig.findOne({where: {id}})
+              try {
+                  if (!conf) {
+                      return new HttpException('Configuracion no encontrada', HttpStatus.NOT_FOUND)
+                  }else{ return conf}
+              } catch (error) {
+                  throw error 
+              }
+              }
+          
+
+
+
+
+
+
+
 
 
         // BUSCA TODAS LAS PROVINCIAS
@@ -54,36 +90,11 @@ export class PredefinidoService {
               return error  
             }
         }
-        //BUSCA UN MUNICIPIO
-       async getM(id: any){
-        const municipioFound = await this.municipios.findOne({where: {id: id}})
-        try {
-          return municipioFound
-       } catch (error) {
-          if(!municipioFound){
-             return new HttpException('User no encontrado', HttpStatus.NOT_FOUND)
-          }
-          throw new UnauthorizedException()
-       }
 
-       }
-       // BUSCA UNA PROVINCIA
-       async getP(id: any){
-        const provinciaFound = await this.provincias.findOne({where: {id: id}})
-        try {
-          return provinciaFound
-       } catch (error) {
-          if(!provinciaFound){
-             return new HttpException('User no encontrado', HttpStatus.NOT_FOUND)
-          }
-          throw new UnauthorizedException()
-       }
-
-       }
         // BUSCA TODOS LOS MUNICIPIOS
         async allM(){
             try {
-            return await this.municipios.find({relations: {idprovincia: true}})  
+            return await this.municipios.find()  
          
             } catch (error) {
               return error  
@@ -98,31 +109,65 @@ export class PredefinidoService {
           }
       }
 
+
+          //BUSCA UN MUNICIPIO
+          async getM(id: any){
+            const municipioFound = await this.municipios.findOne({where: {id: id}})
+            try {
+              if(!municipioFound){}else{return municipioFound}
+
+          } catch (error) {
+             
+              throw error
+          }
+    
+          }
+
+          // BUSCA UNA PROVINCIA
+          async getP(id: any){
+            const provinciaFound = await this.provincias.findOne({where: {id: id}})
+            try {
+              if(!provinciaFound){
+                return new HttpException('User no encontrado', HttpStatus.NOT_FOUND)
+              }else{return provinciaFound}
+     
+          } catch (error) {
+              
+              throw error
+          }
+    
+          }
+// BUSCAR ERROR QUE HACE QUE SE BORREN LOS DATOS DE LA BASE DATOS
+
+
        // BUSCA TODAS LAS PROVINCIAS X MUNICIPIOS CON JOIN
        async getMunicipiosXProvincia(id: any){
-
          const provincia =   await this.provincias.findOneBy({id})
-          const result = this.municipios.createQueryBuilder('municipios')
-          .leftJoinAndSelect('municipios.idprovincia', 'provincias').
-          where('municipios.idprovincia = :id', {id: provincia.id})
+
+         if (!provincia) {
+          // Manejo de error si la provincia no se encuentra
+          throw new Error('Provincia no encontrada');
+        }
+     /*      const result = this.municipios
+          .createQueryBuilder('municipios')
+          .leftJoinAndSelect('municipios.idprovincia', 'provincias')
+          .where('municipios.idprovincia = :id', { id: provincia.id})
+         .getMany(); */
+
+         const result = await this.municipios
+         .createQueryBuilder('municipios')
+         .leftJoinAndSelect('municipios.idprovincia', 'provincias') // Cambiado a 'provincia' en lugar de 'idprovincia'
+         .where('municipios.idprovincia = :id', { id: provincia.id }) // Cambiado a 'provincia' en lugar de 'idprovincia'
          .getMany();
+     
+         
          return result
         }
 
     
 
         // BUSCA TODAS LAS DISTRITOS x Municipios
-        async getDistritosXMunicipios(id: any){
-          try {
-            const municipios = await this.municipios.findBy({id})
-            const distrito = await this.distritos.find({where: {idmunicipio: municipios}})
-            return distrito
-          } catch (error) {
-            console.log(error)
-            return error  
-          }
-      }
-
+    
 
 
       /// ---------ZONAS----------
@@ -140,7 +185,7 @@ export class PredefinidoService {
     // ZONAS REGISTRADAS
    async  allZonas(){
       try {
-        let found = await  this.zona.find({relations: {idmunicipio: true}})
+        let found = await  this.zona.find()
         return  found
       } catch (error) {
         console.log(error)
@@ -174,7 +219,7 @@ export class PredefinidoService {
      }
     // LEER ZONAS
      async readZona(id: string){
-      const coordZonaFound = await this.zona.findOne({where:{id}, relations: {idmunicipio: true}})
+      const coordZonaFound = await this.zona.findOne({where:{id}})
   
           try {
               if(!coordZonaFound){
@@ -226,7 +271,7 @@ export class PredefinidoService {
     
      async allLocalidad(){
       try {
-        let found = await this.localidad.find({relations: {idmunicipio: true, idzona: true}})  
+        let found = await this.localidad.find({relations: { idzona: true}})  
         return found
       } catch (error) {
         console.log(error)
@@ -254,7 +299,7 @@ export class PredefinidoService {
     async readLocalidad(id: string){
     const found = await this.localidad.findOne({
         where:{id}, 
-        relations:{idmunicipio: true, idzona: true}})
+        relations:{ idzona: true}})
       try {
           if(!found){
           return new HttpException(' no encontrado', HttpStatus.NOT_FOUND)
@@ -371,7 +416,7 @@ export class PredefinidoService {
     //----CIRCUNSCRIPCIONES
     async allCircuns(){
       try {
-        return await this.circuns.find({relations: {idmunicipio: true}})  
+        return await this.circuns.find()  
       } catch (error) {
         console.log(error)
         return error  
@@ -391,7 +436,7 @@ export class PredefinidoService {
       }
     async readCircuns(id: string){
     const found = await this.circuns.findOne({
-        where:{id}, relations:{idmunicipio: true,}})
+        where:{id}})
       try {
           if(!found){
           return new HttpException(' no encontrado', HttpStatus.NOT_FOUND)
@@ -501,7 +546,7 @@ export class PredefinidoService {
 
     async allDist(){
           try {
-            return await this.distritos.find({relations: { idmunicipio: true}})
+            return await this.distritos.find()
           } catch (error) {
             console.log(error)
             return error  
@@ -520,7 +565,7 @@ export class PredefinidoService {
         }
      }
    async readDist(id: string){
-      const found = await this.distritos.findOne({where:{id}, relations: {idmunicipio: true}})
+      const found = await this.distritos.findOne({where:{id}})
           try {
               if(!found){
               return new HttpException('no encontrado', HttpStatus.NOT_FOUND)

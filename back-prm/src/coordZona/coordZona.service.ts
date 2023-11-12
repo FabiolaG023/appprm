@@ -17,8 +17,7 @@ export class CoordZonaService {
               return await this.respo.find({
                 relations: {
                      idcoordmunicipal: true, 
-                     idmunicipio: true,
-                    idprovincia: true}})  
+                    }})  
             } catch (error) {
               return error  
             }
@@ -38,10 +37,10 @@ export class CoordZonaService {
     
         async read(id: string){
         const coordZonaFound = await this.respo.findOne({where:{id}, relations: {
-            idmunicipio: true, 
+
            
             idcoordmunicipal: true,
-            idprovincia: true,
+         
         }})
     
             try {

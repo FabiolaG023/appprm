@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ConfigSystemEntity } from 'src/predefinido/predefinido.entity';
 import { UserEntity } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
@@ -15,7 +16,13 @@ userData: any[]=[]
         private jwtService: JwtService,
         
         @InjectRepository(UserEntity)
-    private readonly respo: Repository<UserEntity>){}
+    private readonly respo: Repository<UserEntity>,
+
+
+    
+
+    
+    ){}
   
 // funcion asincrona que valida el usuario y la contraseña
     async validateUser(data): Promise<any>{
@@ -43,12 +50,10 @@ async generateAccessToken(usuario: string){
     const payload = {
           id: user.id,
           usuario: user.usuario,
-          idprovincia: user.idprovincia,
           role: user.role,
           nombre: user.nombre,
           apellido: user.apellido }
     return {access_token: this.jwtService.sign(payload)}
-
 }
 
 
@@ -68,16 +73,23 @@ async login(user: any){
         nombre: user.nombre};
 }
 
-async singup(data:any){
- 
-    const userFound = this.respo.findOne({where:{usuario: data.usuario}})
- 
+   
+
+async singup(data: any){
+    console.log(data)
+    const userFound = await this.respo.findOne({where:{usuario: data.usuario}})
     try {
-       if (userFound) {
-          console.log(`${data.usuario} Existe, intente de nuevo!`)
+       if (!userFound) {
+        const newUser = this.respo.create(data)
+        this.respo.save(newUser)
+        /* throw new HttpException({
+            status: HttpStatus.CREATED,
+            message: 'usuario creado',
+            origin: '/singup'
+           }, HttpStatus.CREATED); */
        }else{
-           const newUser = this.respo.create(data)
-           this.respo.save(newUser)
+        console.log(`${data.usuario} Existe, intente de nuevo!`)
+  
        }
  
     } catch (error) {
@@ -85,6 +97,9 @@ async singup(data:any){
       
     }
  }
+
+
+
  
 
 }

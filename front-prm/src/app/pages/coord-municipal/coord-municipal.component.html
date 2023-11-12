@@ -202,7 +202,7 @@
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <div *ngIf="coordMuni.iddistrito; else empty">
+                     <div *ngIf="coordMuni.iddistrito; else empty">
                         <h5 class="m-b-20 m-t-40 h5-b-5 b-b-default f-w-600">Distrito: <h6 class="text-muted f-w-400">{{coordMuni.iddistrito}}</h6></h5>
                       </div>
                       <ng-template #empty>
@@ -249,7 +249,7 @@
       </div>
       <form [formGroup]="formEdit" (ngSubmit)="updateData(coordM.id)">
       <div class="modal-body">
-    
+
         <div class="card user-card-full">
           <div class="row m-l-0 m-r-0">
             <div class="col-sm-4 bg-c-lite-green user-profile">
@@ -266,8 +266,8 @@
             <div class="col-sm-8">
               <div class="card-block">
                 <div class="row">
-                
-              
+
+
                         <div class="col-md-6">
                           <label for="floatingInput">Apodo</label>
                           <div class="form-group input-group form-group-alt">
@@ -282,20 +282,20 @@
                               <span class="input-group-text" id="basic-addon2">123</span>
                             </div>
                         </div>
-                   
-                  
+
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-       
-     
+
+
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Guardar</button>
       </div>
-     
+
     </form>
     </div>
   </div>

@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoordMunicipalController } from './coordMunicipal.controller';
 import { CoordMunicipalEntity } from './coordMunicipal.entity';
 import { CoordMunicipalService } from './coordMunicipal.service';
+import { ConfigSystemEntity } from 'src/predefinido/predefinido.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CoordMunicipalEntity])],
+  imports: [TypeOrmModule.forFeature([CoordMunicipalEntity, ConfigSystemEntity])],
   providers: [CoordMunicipalService],
   controllers: [CoordMunicipalController],
   exports: [CoordMunicipalService]

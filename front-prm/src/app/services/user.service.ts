@@ -20,6 +20,15 @@ export class UserService {
    });
   }
 
+  all(){
+    const httpHeaders = this.getHeadersToken();
+    let api = `${this.restApi}/user/all`;
+     return this.http.get<any>(api, { headers: httpHeaders}).pipe(
+       map((res) => {return res || {};}),
+       catchError(this.handleError));
+  }
+
+
   add(data: any){
     const httpHeaders = this.getHeadersToken();
     let api = `${this.restApi}/user/add`;
@@ -29,6 +38,20 @@ export class UserService {
   }
 
 
+  read(id: any){
+    const httpHeaders = this.getHeadersToken();
+     let api_url = `${this.restApi}/user/read/${id}`;
+     return this.http.get<any>(api_url, {headers: httpHeaders})
+     .pipe(map((res)=> { return res || {};}), catchError(this.handleError));
+   }
+
+
+   update(id:any, data: any){
+    const httpHeaders = this.getHeadersToken();
+    let api_url = `${this.restApi}/user/update/${id}`;
+    return this.http.patch(api_url, data, {headers: httpHeaders})
+    .pipe(map((res)=> { return res || {};}), catchError(this.handleError));
+  }
 
 
 

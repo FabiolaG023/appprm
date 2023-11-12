@@ -43,6 +43,7 @@ export const authGuard: CanActivateFn = (route, state) => {
       didClose: () => {
         router.navigate(['/login'])
       //  window.location.reload()
+      auth.doLogout()
       }
     })
 //    window.alert("El token ha expirado o No está Logeado!");

@@ -14,6 +14,33 @@ export class PredefinidoController {
   constructor(private service: PredefinidoService) { }
 
 
+
+
+  @UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
+@UseGuards(RoleGuard(Role.Admin || Role.User)) 
+@Post('/addConfig')
+async createConfig(@Body() data: any){
+try {
+  console.log(data)
+return await this.service.configAdd(data)
+} catch (error) {
+ return  error 
+}
+}
+
+
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
+@UseGuards(RoleGuard(Role.Admin || Role.User)) 
+@Get('readConfig/:id')
+async readConfig(@Param('id', ParseIntPipe) id: string){
+  return await this.service.configread(id)
+}
+
+
+
+
   @Get('allProvincias')
   async getProvincias(){
     return await this.service.allP()
@@ -71,14 +98,14 @@ export class PredefinidoController {
     return await this.service.getMunicipiosXProvincia(id)
   }
 
-  @UseGuards(AuthGuard('jwt'))
+/*   @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseGuards(RoleGuard(Role.Admin || Role.User)) 
   @Get('DistritosXMunicipios/:id')
   async getDistritosXMunicipios(@Param('id', ParseIntPipe) id: string){
     return await this.service.getDistritosXMunicipios(id)
   }
-
+ */
 
 // ZONAS
 
@@ -146,6 +173,8 @@ return await this.service.createDist(data)
  return  error 
 }
 }
+
+
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseGuards(RoleGuard(Role.Admin || Role.User)) 
@@ -153,6 +182,8 @@ return await this.service.createDist(data)
 async readDist(@Param('id', ParseIntPipe) id: string){
   return await this.service.readDist(id)
 }
+
+
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseGuards(RoleGuard(Role.Admin || Role.User)) 

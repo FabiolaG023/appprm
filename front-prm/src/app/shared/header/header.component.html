@@ -18,13 +18,18 @@
           <a class="py-0 nav-link d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#LiderModal">
             <div >
             </div>
-            <div *ngIf="imageSrc; else imageDefault">
-              <img [src]="imageSrc"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
+
+            <div class="caption ms-3 d-none d-md-block" >
+
+              <div *ngIf="configStautus===404; else data">
+                <h6 class="mb-0 caption-title">N/A</h6>
+              </div>
+              <ng-template #data>
+                <h6 class="mb-0 caption-title">Provincia</h6>
+              </ng-template>
+              <p class="mb-0 caption-sub-title"></p>
             </div>
-            
-            <ng-template #imageDefault>
-              <img  src="../../../assets/images/Sin título.png"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
-            </ng-template>
+
 
             <div class="caption ms-3 d-none d-md-block" *ngIf="statusRes == 302">
               <h6 class="mb-0 caption-title">{{lider.idcandidatura.nombre}}</h6>
@@ -33,9 +38,14 @@
           </a>
           <li class="nav-item dropdown">
             <a class="py-0 nav-link d-flex align-items-center dropdown-toggle" href="#" data-bs-toggle="dropdown">
-              <div *ngIf="imageSrc">
-                <img [src]="foto" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
-              </div>
+
+            <div *ngIf="imageSrc; else imageDefault">
+              <img [src]="imageSrc"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
+            </div>
+
+            <ng-template #imageDefault>
+              <img  src="../../../assets/images/Sin título.png"  alt="Imagen en formato base64" alt="profile-pic" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
+            </ng-template>
               <div class="caption ms-3 d-none d-md-block ">
                 <h6 class="mb-0 caption-title">{{user.usuario}}</h6>
                 <p class="mb-0 caption-sub-title">{{user.role}}</p>
@@ -50,7 +60,7 @@
         </ul>
       </div>
 
-      
+
     </div>
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
       <div class="offcanvas-header">
@@ -62,12 +72,12 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <ul class="mb-0 list-unstyled">
             <li class="mt-2">
-              <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse"></button>       
-            </li>  
+              <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse"></button>
+            </li>
           </ul>
-        </ul>  
+        </ul>
       </div>
-    
+
     </div>
   </nav>
 </div>
@@ -87,7 +97,7 @@
             <i class="right-icon me-2">
               <i class="fa-solid fa-people-line"></i>
             </i>
-            Coordinadores 
+            Coordinadores
           </button>
           <ul class="list-unstyled ps-3 collapse" id="components-collapse" >
             <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/coordMunicipal">Coord. Municipales</a></li>
@@ -102,7 +112,7 @@
                 <i class="fa-solid fa-people-line"></i>
               </i>
               Coordinadores
-            </a> 
+            </a>
           </button>
           <ul class="list-unstyled ps-3 collapse" id="components-collapse" >
             <li><a class="rounded nav-link d-inline-flex align-items-center" href="formulario-Coordinacion/coordMunicipal">Coord.Municipales</a></li>
@@ -204,10 +214,11 @@
       <li class="nav-item dropdown">
         <a class="py-0 nav-link d-flex align-items-center"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <ul class="navbar-nav dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <li class="nav-item"><a class="nav-link" > Configuracion </a></li>
+            <li class="nav-item"><a class="nav-link"  > Configuracion </a></li>
           </ul>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="formulario-Coordinacion/config"  >Config</a></li>
           <li><a class="dropdown-item" href="formulario-Coordinacion/zonas">Zonas</a></li>
           <li><a class="dropdown-item" href="formulario-Coordinacion/localidades" >Localidades</a></li>
           <li><a class="dropdown-item" href="formulario-Coordinacion/colegios" >Colegios</a></li>
@@ -266,4 +277,7 @@
     </div>
   </div>
 </div>
+
+
+
 

@@ -15,7 +15,7 @@ import { LiderEntity } from './lider/lider.entity';
 
 
 import { PredefinidoModule } from './predefinido/predefinido.module';
-import { AbcsEntity, CandidaturaEntity, ColegiosEntity, DistritosEntity, LocalidadEntity, MunicipiosEntity, ProvinciasEntity, RecintosEntity, ZonasEntity, CircunscripcionesEntity } from './predefinido/predefinido.entity';
+import { AbcsEntity, CandidaturaEntity, ColegiosEntity, DistritosEntity, LocalidadEntity, MunicipiosEntity, ProvinciasEntity, RecintosEntity, ZonasEntity, CircunscripcionesEntity, ConfigSystemEntity } from './predefinido/predefinido.entity';
 import { CoordMunicipalModule } from './coordMunicipal/coordMunicipal.module';
 import { CoordMunicipalEntity } from './coordMunicipal/coordMunicipal.entity';
 import { CoordZonaModule } from './coordZona/coordZona.module';
@@ -57,26 +57,27 @@ CoordMunicipalModule,
       username: 'root',
       password: 'pass354368',
       autoLoadEntities: true,
-   //   synchronize: true,
+      synchronize: true,
       entities: [
+
         UserEntity, 
         LiderEntity, 
-       
         ColegiosEntity,
         CoordMunicipalEntity,
         CoordZonaEntity,
         CoordComiteEntity,
         MilitantesEntity,
         CandidaturaEntity,
-        ProvinciasEntity, 
-        MunicipiosEntity,
+       // ProvinciasEntity, 
+       // MunicipiosEntity,
         DistritosEntity,
         AbcsEntity,
         ZonasEntity,
         RecintosEntity,
         ColegiosEntity,
         LocalidadEntity,
-        CircunscripcionesEntity
+        CircunscripcionesEntity,
+        ConfigSystemEntity
       ],
     }), 
     AuthModule,

@@ -43,8 +43,8 @@ async createUser(@Body() data: UserDto){
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseGuards(RoleGuard(Role.Admin ||Role.User)) 
-@Get(':id')
-getUserInfo(@Param('id', ParseIntPipe) id: string){
+@Get('read/:id')
+readUser(@Param('id', ParseIntPipe) id: string){
   try {
     return this.service.read(id)
    } catch (error) {
@@ -53,8 +53,19 @@ getUserInfo(@Param('id', ParseIntPipe) id: string){
 
 }
 
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
+@UseGuards(RoleGuard(Role.Admin ||Role.User))
+@Get('info/:id')
+info(@Param('id', ParseIntPipe) id:string){
+  try {
+    return this.service.read(id)
+   } catch (error) {
+     return  error 
+   }
+ 
 
-
+}
 
 
 

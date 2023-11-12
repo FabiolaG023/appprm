@@ -29,6 +29,13 @@ export class AuthService {
        catchError(this.handleError));
   }
 
+  config(data: any){
+    let api = `${this.restApi}/config/add`;
+     return this.http.post<any>(api, data).pipe(
+       map((res) => {return res || {};}),
+       catchError(this.handleError));
+  }
+
 
   login(user: any): Observable<any> {
     return this.http.post<any>(`${this.restApi}/auth/login`, user)
@@ -55,7 +62,7 @@ export class AuthService {
 
     getUserProfile(id: string): Observable<any> {
       const httpHeaders = this.getHeadersToken();
-     let api = `${this.restApi}/user/${id}`;
+     let api = `${this.restApi}/user/info/${id}`;
       return this.http.get<any>(api, { headers: httpHeaders}).pipe(
         map((res) => {return res || {};}),
         catchError(this.handleError));

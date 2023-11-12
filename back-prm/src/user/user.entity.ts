@@ -18,7 +18,7 @@ export class UserEntity {
     @Column({type: 'varchar', length: 70, unique: true})
     usuario: string;
 
-    @Column({type: 'text'})
+    @Column({type: 'text', nullable: true})
     foto: string;
 
     @Column({ type: 'varchar', length: 70, nullable: false })
@@ -34,9 +34,9 @@ export class UserEntity {
     } 
 
     @Column({type: 'varchar', default: "user"})
-    role!: Role;
+    role!: string;
 
-
+/* 
     @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idprovincia',referencedColumnName: 'id', foreignKeyConstraintName: "usuario-provincia"})
     @Column({ type: 'int'})
@@ -46,7 +46,7 @@ export class UserEntity {
     @ManyToOne(()=> MunicipiosEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idmunicipio', referencedColumnName: 'id', foreignKeyConstraintName: "usuario-municipio"})
     @Column({ type: 'int'})
-    idmunicipio: MunicipiosEntity;
+    idmunicipio: MunicipiosEntity; */
 
 
 

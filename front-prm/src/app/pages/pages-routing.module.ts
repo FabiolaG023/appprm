@@ -17,6 +17,7 @@ import { CircunscripcionComponent } from './configuracion/circunscripcion/circun
 import { ColegioComponent } from './configuracion/colegio/colegio.component';
 import { RecintoComponent } from './configuracion/recinto/recinto.component';
 import { LoginComponent } from '../auth/login/login.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 const routes: Routes = [
  // {path:'', pathMatch:'full', redirectTo:'login'},
@@ -36,7 +37,8 @@ const routes: Routes = [
     {path: 'circunscripciones', component: CircunscripcionComponent },
     {path: 'colegios', component: ColegioComponent },
     {path: 'recintos', component: RecintoComponent },
-    {path: 'lider',  component: LiderComponent}
+    {path: 'lider',  component: LiderComponent},
+    {path: 'config',  component: ConfiguracionComponent}
   //  {path: '', component: } , canActivate: [liderGuard]
   ]},
 //  { path: '**', redirectTo: 'formulario-Coordinacion/inicio' },

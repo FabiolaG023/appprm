@@ -23,7 +23,7 @@ export class SingupComponent implements OnInit {
  newform: FormGroup;
 
   constructor(
-    private userServices: UserService,
+    private user: UserService,
     private auth: AuthService,
     private fb: FormBuilder,
     private router: Router,
@@ -37,8 +37,6 @@ export class SingupComponent implements OnInit {
       usuario: new FormControl ('', Validators.required),
       password: new FormControl ('', Validators.required),
       role: new FormControl ('', Validators.required),
-      idprovincia: new FormControl ('', Validators.required),
-      idmunicipio: new FormControl ('', Validators.required)
      })
      // CONVERTIR EN MAYUSCULAS
      this.newform.get('nombre')!.valueChanges.pipe(map((value: any)=> value.toUpperCase()))
@@ -58,11 +56,8 @@ export class SingupComponent implements OnInit {
        }
 
 
-    singup(){
-    this.auth.singup(this.newform.value).subscribe((res: any)=>{
-      console.log(res)
-      this.router.navigate(['formulario-Coordinacion/inicio']);
-    })
+     singup(){
+      this.auth.singup(this.newform.value).subscribe(()=>{})
     }
 
 

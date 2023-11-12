@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from "typeorm";
 
 import { CoordZonaEntity } from "src/coordZona/coordZona.entity";
-import { ZonasEntity } from "src/predefinido/predefinido.entity";
+import { ConfigSystemEntity, ZonasEntity } from "src/predefinido/predefinido.entity";
 
 
 @Entity('coordcomite')
@@ -26,10 +26,19 @@ export class CoordComiteEntity {
      @Column({length: 100})
      apodo: string;
  
-     @ManyToOne(()=> ZonasEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
+   /*   @ManyToOne(()=> ZonasEntity,{onDelete: 'CASCADE', onUpdate: 'CASCADE'})
      @JoinColumn({name: 'idzona', referencedColumnName: 'id', foreignKeyConstraintName: "coordComite-zonas"})
      @Column({ type: 'int'})
-     idzona: ZonasEntity;
+     idzona: ZonasEntity; */
+
+     @ManyToOne(()=> ConfigSystemEntity)
+     @JoinColumn({name: 'config', referencedColumnName: 'id', foreignKeyConstraintName: "coordcomite-config"})
+     @Column({ type: 'int'})
+     config: ConfigSystemEntity; 
+
+    
+     @Column({ type: 'varchar'})
+     idzona: string;
    
      
  

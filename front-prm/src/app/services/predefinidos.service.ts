@@ -29,7 +29,20 @@ export class PredefinidosService {
    });
   }
 
+  addConfig(data:any){
+    console.log(data)
+    const httpHeaders = this.getHeadersToken();
+    let api_url = `${this.restApi}/predefinido/addConfig`;
+    return this.http.post<any>(api_url, data,{headers: httpHeaders})
+    .pipe(map((res)=> { return res || {};}), catchError(this.handleError));
+  }
 
+  readConfig(id: any){
+    const httpHeaders = this.getHeadersToken();
+    let api_url = `${this.restApi}/predefinido/readConfig/${id}`;
+    return this.http.get<any>(api_url, {headers: httpHeaders})
+    .pipe(map((res)=> { return res || {};}), catchError(this.handleError));
+  }
 
   getMunicipio(id: any){
     const httpHeaders = this.getHeadersToken();

@@ -1,4 +1,4 @@
-import { MunicipiosEntity, ProvinciasEntity, CircunscripcionesEntity, RecintosEntity, ColegiosEntity } from "src/predefinido/predefinido.entity";
+import { MunicipiosEntity, ProvinciasEntity, CircunscripcionesEntity, RecintosEntity, ColegiosEntity, ConfigSystemEntity } from "src/predefinido/predefinido.entity";
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from "typeorm";
 
 
@@ -39,7 +39,12 @@ export class CoordMunicipalEntity {
     @Column({ type: 'varchar'})
     idcolegio: string;
 
+    @ManyToOne(()=> ConfigSystemEntity)
+    @JoinColumn({name: 'config', referencedColumnName: 'id', foreignKeyConstraintName: "coordmunicipal-config"})
+    @Column({ type: 'int'})
+    config: ConfigSystemEntity; 
 
+/* 
     @ManyToOne(()=> ProvinciasEntity, {onDelete: 'CASCADE', onUpdate: 'CASCADE'})
     @JoinColumn({name: 'idprovincia',referencedColumnName: 'id', foreignKeyConstraintName: "coordMunicipal-provincia"})
     @Column({ type: 'int'})
@@ -51,7 +56,7 @@ export class CoordMunicipalEntity {
     @Column({ type: 'int'})
     idmunicipio: MunicipiosEntity;
 
-
+ */
 
 
 

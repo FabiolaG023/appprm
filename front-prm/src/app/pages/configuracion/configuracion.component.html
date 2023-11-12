@@ -1,0 +1,38 @@
+
+
+
+<div class="card">
+  <div class="card-body">
+
+<form class="row g-3" [formGroup]="configForm" (ngSubmit)="add()" >
+
+  <div class="col-md-8">
+    <label for="floatingInput">Provincias</label>
+    <div class="form-group input-group form-group-alt">
+      <select class="form-select form-select-sm" formControlName="idprovincia"   [(ngModel)]="idprovincia"
+      (change)="getMunicipiosXProvincia()" >
+      <option  *ngFor="let provincia of provincias" value="{{provincia.id}}">{{provincia.descripcion}}
+    </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <label for="floatingInput">Municipios</label>
+    <div class="form-group input-group form-group-alt">
+      <select class="form-select form-select-sm" formControlName="idmunicipio">
+        <option  *ngFor="let municipio of municipios" value="{{municipio.municipio}}">{{municipio.municipio}}
+      </option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-secondary" >Guardar</button>
+  </div>
+  </form>
+  </div>
+</div>
+
+
+
+

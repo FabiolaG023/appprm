@@ -5,10 +5,10 @@ import { CoordComiteEntity } from './coordComite.entity';
 import { CoordComiteService } from './coordComite.service';
 
 import { CoordZonaEntity } from 'src/coordZona/coordZona.entity';
-import { ZonasEntity } from 'src/predefinido/predefinido.entity';
+import { ConfigSystemEntity, ZonasEntity } from 'src/predefinido/predefinido.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CoordComiteEntity, ZonasEntity, CoordZonaEntity])],
+  imports: [TypeOrmModule.forFeature([CoordComiteEntity, ZonasEntity, CoordZonaEntity, ConfigSystemEntity])],
   providers: [CoordComiteService],
   controllers: [CoordComiteController]
 })
